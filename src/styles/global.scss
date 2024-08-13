@@ -1,0 +1,20 @@
+@import "reset/reset";
+@import "variables/variables";
+@import "themes/dark";
+@import "themes/light";
+
+
+html {
+  font-size: 14px;
+}
+
+.app {
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+}
