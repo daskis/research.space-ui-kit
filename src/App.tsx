@@ -1,47 +1,29 @@
-import {useState} from "react";
-import {Textarea} from "@components";
-import {Radio, ThemeSwitcher} from "@components";
+import { useState } from 'react';
+import { Checkbox } from './components';
+
+const items = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+];
 
 function App() {
-    const [value, setValue] = useState<string>("")
-    const items = [
-        {
-            value: "aboba1",
-            label: "aboba1",
-        },
-        {
-            value: "aboba2",
-            label: "aboba2",
-        },
-        {
-            value: "aboba3",
-            label: "aboba3",
-        },
-    ]
-    const [selectedOption, setSelectedOption] = useState(items[0].value);
+    const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
-    const handleChange = (value: string) => {
-        setSelectedOption(value);
+    const handleCheckboxChange = (values: string[]) => {
+        setSelectedValues(values);
     };
+
     return (
         <div>
-            <Textarea
-                borderColor="secondary"
-                size="h1"
-                label={"12"} value={value} onChange={(e) => {
-                setValue(e.target.value)
-            }}/>
-            <ThemeSwitcher/>
-            <Radio.Group
-                radioColor="secondary"
+            <Checkbox.Group
+                size="h2"
+                checkboxColor="secondary"
                 items={items}
-                value={selectedOption}
-                size="h1"
-                onChange={handleChange}
-            />
-
+                values={selectedValues}
+                onChange={handleCheckboxChange} />
         </div>
-    )
+    );
 }
 
-export default App
+export default App;

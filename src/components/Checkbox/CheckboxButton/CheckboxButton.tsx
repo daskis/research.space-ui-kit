@@ -1,44 +1,41 @@
-import cls from './RadioButton.module.scss';
+import cls from './CheckboxButton.module.scss';
 import { Text } from '@components';
-import { IRadioButtonProps } from './RadioButton.props.ts';
+import { ICheckboxButtonProps } from './CheckboxButton.props';
 import { classNames } from '@helpers';
 
-export const RadioButton = (
-    {
-        label,
-        size = 'h1',
-        textColor = 'text',
-        radioColor = 'primary',
-        fontFamily = 'first',
-        onChange,
-        checked,
-        bgColor = 'bg',
-        className,
-        id,
-        ...props
-    }: IRadioButtonProps,
-) => {
+export const CheckboxButton = ({
+                                   label,
+                                   size = 'h1',
+                                   textColor = 'text',
+                                   checkboxColor = 'primary',
+                                   fontFamily = 'first',
+                                   onChange,
+                                   checked,
+                                   bgColor = 'bg',
+                                   className,
+                                   id,
+                                   ...props
+                               }: ICheckboxButtonProps) => {
     return (
         <div className={cls.wrapper}>
             <input
                 {...props}
-                type="radio"
+                type="checkbox"
                 checked={checked}
                 onChange={onChange}
                 id={id}
-                name={`${id}_radio`}
-                className={classNames(cls.radio, {
-                    // Text color
-                    [cls.primary]: radioColor === 'primary',
-                    [cls.secondary]: radioColor === 'secondary',
-                    [cls.success]: radioColor === 'success',
-                    [cls.warning]: radioColor === 'warning',
-                    [cls.danger]: radioColor === 'danger',
-                    [cls.info]: radioColor === 'info',
-                    [cls.link]: radioColor === 'link',
-                    [cls.white]: radioColor === 'white',
-                    [cls.black]: radioColor === 'black',
-                    [cls.text]: radioColor === 'text',
+                className={classNames(cls.checkbox, {
+                    // Checkbox color
+                    [cls.primary]: checkboxColor === 'primary',
+                    [cls.secondary]: checkboxColor === 'secondary',
+                    [cls.success]: checkboxColor === 'success',
+                    [cls.warning]: checkboxColor === 'warning',
+                    [cls.danger]: checkboxColor === 'danger',
+                    [cls.info]: checkboxColor === 'info',
+                    [cls.link]: checkboxColor === 'link',
+                    [cls.white]: checkboxColor === 'white',
+                    [cls.black]: checkboxColor === 'black',
+                    [cls.text]: checkboxColor === 'text',
 
                     [cls.primary_bg]: bgColor === 'primary',
                     [cls.secondary_bg]: bgColor === 'secondary',
@@ -75,4 +72,3 @@ export const RadioButton = (
         </div>
     );
 };
-

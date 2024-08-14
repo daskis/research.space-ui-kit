@@ -1,27 +1,37 @@
-import cls from './RadioGroup.module.scss';
-import { IRadioGroupProps, IRadioItem } from './RadioGroup.props.ts';
+import cls from './CheckboxGroup.module.scss';
+import { ICheckboxGroupProps, ICheckboxItem } from './CheckboxGroup.props.ts';
 import { classNames } from '@helpers';
-import { RadioButton } from '../RadioButton';
+import { CheckboxButton } from '../CheckboxButton';
 import { ChangeEvent } from 'react';
 
-export const RadioGroup = (
+export const CheckboxGroup = (
     {
         onChange,
         fontFamily,
-        radioColor,
+        checkboxColor,
         size,
-        value,
+        values,
         items,
         textColor,
         gap = 'h6',
         bgColor,
         className,
         ...props
-    }: IRadioGroupProps,
+    }: ICheckboxGroupProps
 ) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange(e.target.id);
+        const { id, checked } = e.target;
+        const newValue = id;
+
+        // Update the values based on whether the checkbox is checked or not
+        const newValues = checked
+            ? [...values, newValue]
+            : values.filter(val => val !== newValue);
+
+        // Call the provided onChange function with the updated values
+        onChange(newValues);
     };
+
     return (
         <ul
             {...props}
@@ -34,19 +44,19 @@ export const RadioGroup = (
                 [cls.h6]: gap === 'h6',
             }, [className])}
         >
-            {items.map((item: IRadioItem) => (
+            {items.map((item: ICheckboxItem) => (
                 <li
                     className={cls.listItem}
                     key={item.value}
                 >
-                    <RadioButton
+                    <CheckboxButton
                         fontFamily={fontFamily}
-                        radioColor={radioColor}
+                        checkboxColor={checkboxColor}
                         size={size}
                         textColor={textColor}
                         bgColor={bgColor}
                         label={item.label}
-                        checked={item.value === value}
+                        checked={values.includes(item.value)}
                         id={item.value}
                         onChange={handleChange}
                     />
@@ -55,4 +65,3 @@ export const RadioGroup = (
         </ul>
     );
 };
-

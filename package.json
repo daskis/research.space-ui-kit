@@ -10,14 +10,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "bump": "npm version patch -m \"React UI Kit version updated to v%s\"",
     "bump:minor": "npm version minor -m \"React UI Kit version updated to v%s\"",
     "bump:major": "npm version major -m \"React UI Kit version updated to v%s\""
   },
   "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "*"
+    "react": ">=18.3.1",
+    "react-dom": ">=18.3.1",
+    "react-router-dom": ">=18.3.1"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
@@ -34,12 +35,14 @@
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "prettier": "3.2.5",
     "sass": "^1.77.6",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
