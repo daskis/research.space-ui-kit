@@ -1,0 +1,119 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+  border-style: solid;
+  position: relative;
+  transition: 0.3s all ease;
+
+  &.primary {
+    border-color: var(--primary);
+    background-color: color-mix(in srgb, var(--primary), transparent 50%);
+  }
+
+  &.secondary {
+    border-color: var(--secondary);
+    background-color: color-mix(in srgb, var(--secondary), transparent 50%);
+  }
+
+  &.success {
+    border-color: var(--success);
+    background-color: color-mix(in srgb, var(--success), transparent 50%);
+  }
+
+  &.warning {
+    border-color: var(--warning);
+    background-color: color-mix(in srgb, var(--warning), transparent 50%);
+  }
+
+  &.danger {
+    border-color: var(--danger);
+    background-color: color-mix(in srgb, var(--danger), transparent 50%);
+  }
+
+  &.info {
+    border-color: var(--info);
+    background-color: color-mix(in srgb, var(--info), transparent 50%);
+  }
+
+  &.link {
+    border-color: var(--link);
+    background-color: color-mix(in srgb, var(--link), transparent 50%);
+  }
+
+  &.white {
+    border-color: var(--white);
+    background-color: color-mix(in srgb, var(--white), transparent 50%);
+  }
+
+  &.black {
+    border-color: var(--black);
+    background-color: color-mix(in srgb, var(--black), transparent 50%);
+  }
+
+  &.bg {
+    border-color: var(--bg);
+    background-color: color-mix(in srgb, var(--bg), transparent 50%);
+  }
+
+  &.bgDark {
+    border-color: var(--bg-dark);
+    background-color: color-mix(in srgb, var(--bg-dark), transparent 50%);
+  }
+
+  &.h1 {
+    padding: var(--padding-3) var(--padding-1);
+  }
+
+  &.h2 {
+    padding: var(--padding-4) var(--padding-1);
+  }
+
+  &.h3 {
+    padding: var(--padding-5) var(--padding-2);
+  }
+
+  &.h4 {
+    padding: var(--padding-5) var(--padding-2);
+  }
+
+  &.h5 {
+    padding: var(--padding-6) var(--padding-3);
+  }
+
+  &.h6 {
+    padding: var(--padding-6) var(--padding-3);
+  }
+
+  &.borderH1 {
+    border-radius: var(--border-radius-1);
+  }
+
+  &.borderH2 {
+    border-radius: var(--border-radius-2)
+  }
+
+  &.borderH3 {
+    border-radius: var(--border-radius-3)
+  }
+
+  &.borderH4 {
+    border-radius: var(--border-radius-4)
+  }
+
+  &.borderH5 {
+    border-radius: var(--border-radius-5)
+  }
+
+  &.borderH6 {
+    border-radius: var(--border-radius-6)
+  }
+
+
+  &.clickable {
+    &:hover {
+      filter: brightness(75%);
+    }
+  }
+}

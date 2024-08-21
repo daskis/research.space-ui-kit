@@ -6,3 +6,5 @@ export * from './Textarea';
 export * from './ThemeSwitcher';
 export * from './Radio';
 export * from './Checkbox';
+export * from './Tag';
+export * from './Select';
