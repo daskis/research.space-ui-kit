@@ -5,7 +5,18 @@
   justify-content: center;
   align-items: center;
   border-style: dashed;
-  background-color: inherit;
+  outline: none;
+  background: inherit;
+
+  & .icon {
+    & path {
+      fill: var(--text);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 
   &:disabled {
     cursor: not-allowed;
@@ -21,152 +32,99 @@
   }
 
 
+  &.inherit {
+    background-color: inherit;
+    border: none;
+  }
+
   &.primary {
     border-color: var(--primary);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--primary);
+    }
   }
 
   &.secondary {
     border-color: var(--secondary);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--secondary);
+    }
   }
 
   &.success {
     border-color: var(--success);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--success);
+    }
   }
 
   &.warning {
     border-color: var(--warning);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--warning);
+    }
   }
 
   &.danger {
     border-color: var(--danger);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--danger);
+    }
   }
 
   &.info {
     border-color: var(--info);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--info);
+    }
   }
 
   &.link {
     border-color: var(--link);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--link);
+    }
   }
 
   &.white {
     border-color: var(--white);
+    &:focus {
+      box-shadow: 0px 0px 2px var(--white);
+    }
   }
 
   &.black {
     border-color: var(--black);
-  }
-
-  &.bg {
-    border-color: var(--white);
-  }
-
-  &.bgDark {
-    border-color: var(--bg-dark);
-  }
-
-
-  &.h1 {
-    & svg {
-      width: 24px;
-      height: 24px;
+    &:focus {
+      box-shadow: 0px 0px 2px var(--black);
     }
-
-    padding: var(--padding-3) var(--padding-1);
   }
 
-  &.h2 {
+  &.small {
+    padding: var(--button-padding-small);
+
     & svg {
-      width: 22px;
-      height: 22px;
+      width: 12px;
+      height: 12px;
     }
-
-    padding: var(--padding-4) var(--padding-1);
   }
 
-  &.h3 {
-    & svg {
-      width: 20px;
-      height: 20px;
-    }
+  &.medium {
+    padding: var(--button-padding-medium);
 
-    padding: var(--padding-5) var(--padding-2);
-  }
-
-  &.h4 {
-    & svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    padding: var(--padding-5) var(--padding-2);
-  }
-
-  &.h5 {
     & svg {
       width: 16px;
       height: 16px;
     }
-
-    padding: var(--padding-6) var(--padding-3);
   }
 
-  &.h6 {
+  &.large {
+    padding: var(--button-padding-large);
+
     & svg {
-      width: 14px;
-      height: 14px;
+      width: 20px;
+      height: 20px;
     }
-
-    padding: var(--padding-6) var(--padding-3);
-  }
-
-
-  &.border_h1 {
-    border-width: var(--border-width-1);
-  }
-
-  &.border_h2 {
-    border-width: var(--border-width-2);
-  }
-
-  &.border_3 {
-    border-width: var(--border-width-3);
-  }
-
-  &.border_h4 {
-    border-width: var(--border-width-4);
-  }
-
-  &.border_h5 {
-    border-width: var(--border-width-5);
-  }
-
-  &.border_h6 {
-    border-width: var(--border-width-6);
-  }
-
-  &.borderH1 {
-    border-radius: var(--border-radius-1);
-  }
-
-  &.borderH2 {
-    border-radius: var(--border-radius-2)
-  }
-
-  &.borderH3 {
-    border-radius: var(--border-radius-3)
-  }
-
-  &.borderH4 {
-    border-radius: var(--border-radius-4)
-  }
-
-  &.borderH5 {
-    border-radius: var(--border-radius-5)
-  }
-
-  &.borderH6 {
-    border-radius: var(--border-radius-6)
   }
 
 }

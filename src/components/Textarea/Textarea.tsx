@@ -1,18 +1,16 @@
 import cls from './Textarea.module.scss';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, CSSProperties, useEffect, useState } from 'react';
 import { classNames } from '@helpers';
 import { Text } from '@components';
 import { useDebounce } from '@hooks';
 import { ITextareaProps } from './Textarea.props.ts';
 
 export const Textarea = ({
-                             size = 'h6',
-                             borderRadius = 'h6',
-                             borderSize = 'h6',
-                             bgColor = 'bg',
-                             textColor = 'text',
-                             borderColor = 'primary',
+                             size = 'medium',
+                             borderRadius = 10,
+                             color = 'primary',
                              fontFamily = 'first',
+                             error,
                              label,
                              value,
                              className,
@@ -21,129 +19,126 @@ export const Textarea = ({
                              ...props
                          }: ITextareaProps) => {
     const [inputValue, setInputValue] = useState<string>(value || '');
-    const [isActive, setIsActive] = useState<boolean>(!!inputValue);
+    const [isFocused, setIsFocused] = useState<boolean>(false);
     const debouncedValue = useDebounce({ value: inputValue, delay: 300 });
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
-    const resizeTextArea = useCallback(() => {
-        if (textAreaRef.current) {
-            const lineHeight = parseInt(window.getComputedStyle(textAreaRef.current).lineHeight, 10);
-            const maxHeight = (maxRows + 1) * lineHeight;
-            textAreaRef.current.style.height = 'auto';
-            const scrollHeight = textAreaRef.current.scrollHeight;
-
-            textAreaRef.current.style.height = scrollHeight > maxHeight ? `${maxHeight}px` : `${scrollHeight}px`;
-            textAreaRef.current.style.overflowY = scrollHeight > maxHeight ? 'auto' : 'hidden';
-        }
-    }, [maxRows]);
+    const [rows, setRows] = useState(1);
 
     useEffect(() => {
-        setIsActive(inputValue.length > 0);
-        resizeTextArea();
-    }, [inputValue, resizeTextArea]);
-
-    useEffect(() => {
-        if (debouncedValue !== inputValue) {
-            onChange({ target: { value: debouncedValue } } as ChangeEvent<HTMLTextAreaElement>);
+        if (debouncedValue !== value) {
+            onChange(debouncedValue);
         }
-    }, [debouncedValue, inputValue, onChange]);
+    }, [debouncedValue, onChange, value]);
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(event.target.value);
-        resizeTextArea();
+        adjustRows(event.target);
     };
 
-    const handleFocus = useCallback(() => {
-        setIsActive(true);
-    }, []);
-
-    const handleBlur = useCallback(() => {
-        if (!inputValue) {
-            setIsActive(false);
-        }
-    }, [inputValue]);
+    const adjustRows = (target: HTMLTextAreaElement) => {
+        const currentRows = Math.floor(target.scrollHeight / 24);
+        setRows(Math.min(currentRows, maxRows));
+    };
 
     useEffect(() => {
         setInputValue(value || '');
     }, [value]);
 
+    const style: CSSProperties = {
+        borderRadius: `${borderRadius}px`,
+        resize: 'none',
+        overflow: 'hidden',
+    };
+
+    const textSize = (): 'h3' | 'h2' | 'h1' | 'h4' | 'h5' | 'h6' => {
+        switch (size) {
+            case 'small':
+                return 'h3';
+            case 'medium':
+                return 'h2';
+            case 'large':
+                return 'h1';
+            default:
+                return 'h2';
+        }
+    };
+
+    const errorSize = (): 'h3' | 'h2' | 'h1' | 'h4' | 'h5' | 'h6' => {
+        switch (size) {
+            case 'small':
+                return 'h6';
+            case 'medium':
+                return 'h5';
+            case 'large':
+                return 'h4';
+            default:
+                return 'h2';
+        }
+    };
+
     return (
-        <div className={cls.wrapper}>
-            <textarea
-                {...props}
-                ref={textAreaRef}
-                value={inputValue}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                className={classNames(cls.textarea, {
-                    [cls.active]: isActive,
-                    // Background color
-                    [cls.bg_color]: bgColor === 'bg',
-                    [cls.bg_dark_color]: bgColor === 'bgDark',
-                    [cls.bg_inherit]: bgColor === 'inherit',
-
-                    // Text color
-                    [cls.primary]: textColor === 'primary',
-                    [cls.secondary]: textColor === 'secondary',
-                    [cls.success]: textColor === 'success',
-                    [cls.warning]: textColor === 'warning',
-                    [cls.danger]: textColor === 'danger',
-                    [cls.info]: textColor === 'info',
-                    [cls.link]: textColor === 'link',
-                    [cls.white]: textColor === 'white',
-                    [cls.black]: textColor === 'black',
-                    [cls.text]: textColor === 'text',
-
-                    // Border color
-                    [cls.border_primary]: borderColor === 'primary',
-                    [cls.border_secondary]: borderColor === 'secondary',
-                    [cls.border_success]: borderColor === 'success',
-                    [cls.border_warning]: borderColor === 'warning',
-                    [cls.border_danger]: borderColor === 'danger',
-                    [cls.border_info]: borderColor === 'info',
-                    [cls.border_link]: borderColor === 'link',
-                    [cls.border_white]: borderColor === 'white',
-                    [cls.border_black]: borderColor === 'black',
-
-                    // Size
-                    [cls.h1]: size === 'h1',
-                    [cls.h2]: size === 'h2',
-                    [cls.h3]: size === 'h3',
-                    [cls.h4]: size === 'h4',
-                    [cls.h5]: size === 'h5',
-                    [cls.h6]: size === 'h6',
-
-                    // Border radius
-                    [cls.border_radius_h1]: borderRadius === 'h1',
-                    [cls.border_radius_h2]: borderRadius === 'h2',
-                    [cls.border_radius_h3]: borderRadius === 'h3',
-                    [cls.border_radius_h4]: borderRadius === 'h4',
-                    [cls.border_radius_h5]: borderRadius === 'h5',
-                    [cls.border_radius_h6]: borderRadius === 'h6',
-
-                    // Border size
-                    [cls.border_size_h1]: borderSize === 'h1',
-                    [cls.border_size_h2]: borderSize === 'h2',
-                    [cls.border_size_h3]: borderSize === 'h3',
-                    [cls.border_size_h4]: borderSize === 'h4',
-                    [cls.border_size_h5]: borderSize === 'h5',
-                    [cls.border_size_h6]: borderSize === 'h6',
-
-                    // Font family
-                    [cls.font_first]: fontFamily === 'first',
-                    [cls.font_second]: fontFamily === 'second',
-                    [cls.font_third]: fontFamily === 'third',
-                }, [className])}
-            />
-            <Text.Paragraph
-                className={cls.label}
-                size={size}
-                color={textColor}
-                fontFamily={fontFamily}
-            >
-                {label}
-            </Text.Paragraph>
+        <div className={cls.errorWrapper}>
+            <div className={cls.wrapper}>
+                <textarea
+                    style={style}
+                    {...props}
+                    value={inputValue}
+                    onChange={handleChange}
+                    rows={rows}
+                    className={classNames(cls.textarea, {
+                        [cls.primary]: color === 'primary',
+                        [cls.secondary]: color === 'secondary',
+                        [cls.success]: color === 'success',
+                        [cls.warning]: color === 'warning',
+                        [cls.danger]: color === 'danger',
+                        [cls.info]: color === 'info',
+                        [cls.link]: color === 'link',
+                        [cls.white]: color === 'white',
+                        [cls.black]: color === 'black',
+                        [cls.text]: color === 'text',
+                        [cls.errorInput]: error !== undefined,
+                        [cls.small]: size === 'small',
+                        [cls.medium]: size === 'medium',
+                        [cls.large]: size === 'large',
+                        [cls.font_first]: fontFamily === 'first',
+                        [cls.font_second]: fontFamily === 'second',
+                        [cls.font_third]: fontFamily === 'third',
+                    }, [className])}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => {
+                        if (!inputValue) {
+                            setIsFocused(false);
+                        }
+                    }}
+                />
+                {label && (
+                    <Text.Paragraph
+                        className={classNames(cls.label, {
+                            [cls.active]: isFocused || inputValue,
+                        }, [])}
+                        size={textSize()}
+                        color="text"
+                        fontFamily={fontFamily}
+                    >
+                        {label}
+                    </Text.Paragraph>
+                )}
+            </div>
+            {error && (
+                <div className={cls.error}>
+                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd"
+                              d="M0 8C0 3.58862 3.58862 0 8 0C12.4114 0 16 3.58862 16 8C16 12.4114 12.4114 16 8 16C3.58862 16 0 12.4114 0 8ZM11.3337 11.3343C11.6286 11.0392 11.6286 10.5624 11.3337 10.2673L9.06621 7.99987L11.3337 5.73249C11.6286 5.43737 11.6286 4.96057 11.3337 4.66546C11.0386 4.37048 10.5618 4.37048 10.2667 4.66546L7.99935 6.93298L5.73202 4.66546C5.43691 4.37048 4.96013 4.37048 4.66502 4.66546C4.37005 4.96057 4.37005 5.43737 4.66502 5.73249L6.93249 7.99987L4.66502 10.2673C4.37005 10.5624 4.37005 11.0392 4.66502 11.3343C4.81216 11.4814 5.00531 11.5553 5.19859 11.5553C5.39174 11.5553 5.58488 11.4814 5.73202 11.3343L7.99935 9.06676L10.2667 11.3343C10.4138 11.4814 10.607 11.5553 10.8001 11.5553C10.9934 11.5553 11.1865 11.4814 11.3337 11.3343Z"
+                              fill="#CA352C" />
+                    </svg>
+                    <Text.Paragraph
+                        color="danger"
+                        size={errorSize()}
+                        fontFamily={fontFamily}
+                    >
+                        {error.message}
+                    </Text.Paragraph>
+                </div>
+            )}
         </div>
     );
 };

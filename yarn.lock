@@ -491,6 +491,18 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@react-input/core@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@react-input/core/-/core-1.0.12.tgz#b76e2474ad544a02e476baa9184ee7ff788c3c3c"
+  integrity sha512-lZDQjphsJenWCD0mcflsyneLnb2a7bFAgAVzih9diEcUjKopcK+QOXhz0a0PHEp8k5LEKpYadjwyltAGOOhL2g==
+
+"@react-input/mask@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@react-input/mask/-/mask-1.2.5.tgz#0ce9c48e36dfcb56705eda811b0143454e146e55"
+  integrity sha512-xouBATnitQqhgKLgu6/J2IZRu7kzqm/tFw2ToFnk6EkRzWs5dawlcF8asASMu7LCDrCqSkjwN+/sscEMG7IXog==
+  dependencies:
+    "@react-input/core" "^1.0.12"
+
 "@remix-run/router@1.19.0":
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.19.0.tgz#745dbffbce67f05386d57ca22c51dfd85c979593"
@@ -1932,6 +1944,11 @@ react-dom@^18.3.1:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
+
+react-hook-form@^7.53.0:
+  version "7.53.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.53.0.tgz#3cf70951bf41fa95207b34486203ebefbd3a05ab"
+  integrity sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==
 
 react-refresh@^0.14.2:
   version "0.14.2"

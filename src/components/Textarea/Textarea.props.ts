@@ -1,18 +1,17 @@
-import {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from "react";
+import { DetailedHTMLProps, Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
+import { FieldError } from 'react-hook-form';
 
 export interface ITextareaProps extends Omit<
     DetailedHTMLProps<InputHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>,
     'size' | 'onChange'
 > {
     label: string;
-    size?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    textColor?: "primary" | "secondary" | "success" | "warning" | "danger" | "info" | "link" | "white" | "black" | "text";
-    borderColor?: "primary" | "secondary" | "success" | "warning" | "danger" | "info" | "link" | "white" | "black";
-    bgColor?: "inherit" | "bg" | "bgDark";
+    size?: 'small' | 'medium' | 'large';
+    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'white' | 'black' | 'text';
+    borderRadius?: number;
+    error?: FieldError | undefined;
     value: string;
-    borderRadius?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    fontFamily?: "first" | "second" | "third"
-    borderSize?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+    fontFamily?: 'first' | 'second' | 'third';
+    onChange: Dispatch<SetStateAction<string>>;
     maxRows?: number;
 }

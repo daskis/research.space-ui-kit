@@ -1,14 +1,27 @@
-import cls from "./ThemeSwitcher.module.scss"
-import {Theme, useTheme} from '@providers';
+import cls from './ThemeSwitcher.module.scss';
+import { Theme, useTheme } from '@providers';
+import { IThemeSwitcherProps } from './ThemeSwitcher.props.ts';
+import { classNames } from '@helpers';
 
-export const ThemeSwitcher = () => {
-    const {theme, toggleTheme} = useTheme();
+export const ThemeSwitcher = (
+    {
+        size = 'medium',
+        className,
+        ...props
+    }: IThemeSwitcherProps,
+) => {
+    const { theme, toggleTheme } = useTheme();
     return (
         <button
+            {...props}
             onClick={() => {
                 toggleTheme();
             }}
-            className={cls.button}>
+            className={classNames(cls.button, {
+                [cls.small]: size === 'small',
+                [cls.medium]: size === 'medium',
+                [cls.large]: size === 'large',
+            }, [className])}>
             {
                 theme === Theme.DARK
                     ?

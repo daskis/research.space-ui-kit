@@ -1,19 +1,17 @@
 import cls from './OptionEl.module.scss';
-import { type MouseEventHandler, useEffect, useRef } from 'react';
+import { CSSProperties, type MouseEventHandler, useEffect, useRef } from 'react';
 import { OptionElProps } from './OptionEl.props.ts';
 import { Option as OptionItem } from './OptionEl.props.ts';
 import { classNames } from '@helpers';
-import { Text } from '../../Text';
+import { Text } from '@components';
 
 
 export const OptionEl = (
     {
         option,
-        bgColor = 'white',
-        weight = '400',
         fontFamily = 'first',
         size,
-        textColor = 'text',
+        color,
         active = false,
         borderRadius,
         onClick,
@@ -41,56 +39,41 @@ export const OptionEl = (
         };
     }, [option.value, onClick, option]);
 
+    const style: CSSProperties = {
+        borderRadius: `${borderRadius}px`, // Добавление gap через inline стиль
+    };
+    const textSize = (): 'h3' | 'h2' | 'h1' | 'h4' | 'h5' | 'h6' => {
+        switch (size) {
+            case'small':
+                return 'h3';
+            case 'medium':
+                return 'h2';
+            case 'large':
+                return 'h1';
+            default:
+                return 'h2';
+        }
+    };
     return (
         <li
             className={classNames(cls.option, {
                 [cls.active]: active,
 
-                [cls.primary]: textColor === 'primary',
-                [cls.secondary]: textColor === 'secondary',
-                [cls.success]: textColor === 'success',
-                [cls.warning]: textColor === 'warning',
-                [cls.danger]: textColor === 'danger',
-                [cls.info]: textColor === 'info',
-                [cls.link]: textColor === 'link',
-                [cls.white]: textColor === 'white',
-                [cls.black]: textColor === 'black',
+                [cls.small]: size === 'small',
+                [cls.medium]: size === 'medium',
+                [cls.large]: size === 'large',
 
-                [cls.bg_primary]: bgColor === 'primary',
-                [cls.bg_secondary]: bgColor === 'secondary',
-                [cls.bg_success]: bgColor === 'success',
-                [cls.bg_warning]: bgColor === 'warning',
-                [cls.bg_danger]: bgColor === 'danger',
-                [cls.bg_info]: bgColor === 'info',
-                [cls.bg_link]: bgColor === 'link',
-                [cls.bg_white]: bgColor === 'white',
-                [cls.bg_black]: bgColor === 'black',
-                [cls.bg_bgDark]: bgColor === 'bg',
-                [cls.bg_bg]: bgColor === 'bgDark',
-                // РАЗМЕРЫ
-                [cls.h1]: size === 'h1',
-                [cls.h2]: size === 'h2',
-                [cls.h3]: size === 'h3',
-                [cls.h4]: size === 'h4',
-                [cls.h5]: size === 'h5',
-                [cls.h6]: size === 'h6',
+                [cls.primary]: color === 'primary',
+                [cls.secondary]: color === 'secondary',
+                [cls.success]: color === 'success',
+                [cls.warning]: color === 'warning',
+                [cls.danger]: color === 'danger',
+                [cls.info]: color === 'info',
+                [cls.link]: color === 'link',
+                [cls.white]: color === 'white',
+                [cls.black]: color === 'black',
+                [cls.text]: color === 'text',
 
-                // Border radius
-                [cls.borderH1]: borderRadius === 'h1',
-                [cls.borderH2]: borderRadius === 'h2',
-                [cls.borderH3]: borderRadius === 'h3',
-                [cls.borderH4]: borderRadius === 'h4',
-                [cls.borderH5]: borderRadius === 'h5',
-                [cls.borderH6]: borderRadius === 'h6',
-                // ВЕС
-                [cls.fontBlack]: weight === '900',
-                [cls.fontBold]: weight === '700',
-                [cls.fontMedium]: weight === '500',
-                [cls.fontRegular]: weight === '400',
-                [cls.fontLight]: weight === '300',
-                [cls.fontThin]: weight === '100',
-
-                // ШРИФТ
                 [cls.fontFirst]: fontFamily === 'first',
                 [cls.fontSecond]: fontFamily === 'second',
                 [cls.fontThird]: fontFamily === 'third',
@@ -99,11 +82,11 @@ export const OptionEl = (
             onClick={handleClick(option)}
             tabIndex={0}
             ref={optionRef}
+            style={style}
         >
             <Text.Paragraph
-                size={size}
-                color={textColor}
-                weight={weight}
+                size={textSize()}
+                color="text"
                 fontFamily={fontFamily}
             >
                 {option.label}

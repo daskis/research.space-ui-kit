@@ -1,10 +1,10 @@
 import cls from './Loader.module.scss';
-import {ILoaderProps} from "./Loader.props.ts";
-import {classNames} from '@helpers';
+import { ILoaderProps } from './Loader.props.ts';
+import { classNames } from '@helpers';
 
 export const Loader = (
     {
-        size = "small",
+        size = 'medium',
         className,
         ...props
     }: ILoaderProps) => {
@@ -12,9 +12,9 @@ export const Loader = (
         <div
             {...props}
             className={classNames(cls.wrapper, {
-                [cls.small]: size === "small",
-                [cls.medium]: size === "medium",
-                [cls.large]: size === "large",
+                [cls.small]: size === 'small',
+                [cls.medium]: size === 'medium',
+                [cls.large]: size === 'large',
             }, [className])}>
             <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg"
                  x="0px" y="0px"
@@ -29,7 +29,7 @@ export const Loader = (
                         dur="1s"
                         from="0 50 50"
                         to="360 50 50"
-                        repeatCount="indefinite"/>
+                        repeatCount="indefinite" />
                 </path>
             </svg>
         </div>

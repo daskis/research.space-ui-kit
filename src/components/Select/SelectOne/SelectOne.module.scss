@@ -1,563 +1,294 @@
-.selectWrapper {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: inherit;
   position: relative;
-  border-width: 1px;
-  border-style: solid;
 
-  &.primary {
-    background-color: var(--primary);
-  }
-
-  &.secondary {
-    background-color: var(--secondary);
-  }
-
-  &.success {
-    background-color: var(--success);
-  }
-
-  &.warning {
-    background-color: var(--warning);
-  }
-
-  &.danger {
-    background-color: var(--danger);
-  }
-
-  &.info {
-    background-color: var(--info);
-  }
-
-  &.link {
-    background-color: var(--link);
-  }
-
-  &.white {
-    background-color: var(--white);
-  }
-
-  &.black {
-    background-color: var(--black);
-  }
-
-  &.text {
-    background-color: var(--text);
-  }
-
-
-  &.bg_primary {
-    background-color: var(--primary);
-
-    & .placeholder {
-      background-color: var(--primary);
-    }
-  }
-
-  &.bg_secondary {
-    background-color: var(--secondary);
-
-    & .placeholder {
-      background-color: var(--secondary);
-    }
-  }
-
-  &.bg_success {
-    background-color: var(--success);
-
-    & .placeholder {
-      background-color: var(--success);
-    }
-  }
-
-  &.bg_warning {
-    background-color: var(--warning);
-
-    & .placeholder {
-      background-color: var(--warning);
-    }
-  }
-
-  &.bg_danger {
-    background-color: var(--danger);
-
-    & .placeholder {
-      background-color: var(--danger);
-    }
-  }
-
-  &.bg_info {
-    background-color: var(--info);
-
-    & .placeholder {
-      background-color: var(--info);
-    }
-  }
-
-  &.bg_link {
-    background-color: var(--link);
-
-    & .placeholder {
-      background-color: var(--link);
-    }
-  }
-
-  &.bg_white {
-    background-color: var(--white);
-
-    & .placeholder {
-      background-color: var(--white);
-    }
-  }
-
-  &.bg_black {
-    background-color: var(--black);
-
-    & .placeholder {
-      background-color: var(--black);
-    }
-  }
-
-  &.bg_bgDark {
-    background-color: var(--bg-dark);
-
-    & .placeholder {
-      background-color: var(--bg-dark);
-    }
-  }
-
-  &.bg_bg {
-    background-color: var(--bg);
-
-    & .placeholder {
-      background-color: var(--bg);
-    }
-  }
-
-  &.border_primary {
-    border-color: var(--primary);
-
-    & .select {
-      border-color: var(--primary);
-    }
-  }
-
-  &.border_secondary {
-    border-color: var(--secondary);
-
-    & .select {
-      border-color: var(--secondary);
-    }
-  }
-
-  &.border_success {
-    border-color: var(--success);
-
-    & .select {
-      border-color: var(--success);
-    }
-  }
-
-  &.border_warning {
-    border-color: var(--warning);
-
-    & .select {
-      border-color: var(--warning);
-    }
-  }
-
-  &.border_danger {
-    border-color: var(--danger);
-
-    & .select {
-      border-color: var(--danger);
-    }
-  }
-
-  &.border_info {
-    border-color: var(--info);
-
-    & .select {
-      border-color: var(--info);
-    }
-  }
-
-  &.border_link {
-    border-color: var(--link);
-
-    & .select {
-      border-color: var(--link);
-    }
-  }
-
-  &.border_white {
-    border-color: var(--white);
-
-    & .select {
-      border-color: var(--white);
-    }
-  }
-
-  &.border_black {
-    border-color: var(--black);
-
-    & .select {
-      border-color: var(--black);
-    }
-  }
-
-  &.border_text {
-    border-color: var(--text);
-
-    & .select {
-      border-color: var(--text);
-    }
-  }
-
-  &.h1 {
-    padding: var(--padding-3) var(--padding-1);
-
-    & .select {
-      top: calc(var(--paragraph-size-1) + var(--paragraph-size-1) + var(--padding-2));
-    }
-
-    & .arrow {
-      & svg {
-        width: var(--paragraph-size-1);
-        height: var(--paragraph-size-1);
-      }
-    }
-  }
-
-  &.h2 {
-    padding: var(--padding-4) var(--padding-1);
-
-    & .select {
-      top: calc(var(--paragraph-size-2) + var(--paragraph-size-2) + var(--padding-3));
-    }
-
-    & .arrow {
-      & svg {
-        width: var(--paragraph-size-2);
-        height: var(--paragraph-size-2);
-      }
-    }
-  }
-
-  &.h3 {
-    padding: var(--padding-5) var(--padding-2);
-
-    & .select {
-      top: calc(var(--paragraph-size-3) + var(--paragraph-size-3) + var(--padding-5));
-    }
-
-    & .arrow {
-      & svg {
-        width: var(--paragraph-size-3);
-        height: var(--paragraph-size-3);
-      }
-    }
-  }
-
-  &.h4 {
-    padding: var(--padding-5) var(--padding-2);
-
-    & .select {
-      top: calc(var(--paragraph-size-4) + var(--paragraph-size-4) + var(--padding-5));
-    }
-
-    & .arrow {
-      & svg {
-        width: var(--paragraph-size-4);
-        height: var(--paragraph-size-4);
-      }
-    }
-  }
-
-  &.h5 {
-    padding: var(--padding-6) var(--padding-3);
-
-    & .select {
-      top: calc(var(--paragraph-size-6) + var(--paragraph-size-5) + var(--padding-6));
-    }
-
-    & .arrow {
-      & svg {
-        width: var(--paragraph-size-5);
-        height: var(--paragraph-size-5);
-      }
-    }
-  }
-
-  &.h6 {
-    padding: var(--padding-6) var(--padding-3);
-
-    & .select {
-      top: calc(var(--paragraph-size-6) + var(--paragraph-size-6) + var(--padding-6));
-    }
-
-    & .arrow {
-      & svg {
-        width: var(--paragraph-size-6);
-        height: var(--paragraph-size-6);
-      }
-    }
-  }
-
-  &.borderH1 {
-    border-radius: var(--border-radius-1);
-  }
-
-  &.borderH2 {
-    border-radius: var(--border-radius-2)
-  }
-
-  &.borderH3 {
-    border-radius: var(--border-radius-3)
-  }
-
-  &.borderH4 {
-    border-radius: var(--border-radius-4)
-  }
-
-  &.borderH5 {
-    border-radius: var(--border-radius-5)
-  }
-
-  &.borderH6 {
-    border-radius: var(--border-radius-6)
-  }
-
-  & .arrow {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 20px;
+  & .placeholder {
+    min-width: 300px;
     display: flex;
     align-items: center;
-
-    &.active {
-      transform: rotate(180deg);
-    }
+    justify-content: space-between;
+    gap: 10px;
+    background: inherit;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--gray);
+    cursor: pointer;
 
     &.primary {
-      & svg {
-        & path {
-          fill: var(--primary);
-        }
+
+      &.active {
+        border-color: var(--primary);
+      }
+
+      &:hover {
+        border-color: var(--primary);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--primary) 75%, transparent);
       }
     }
 
     &.secondary {
-      & svg {
-        & path {
-          fill: var(--secondary);
-        }
+      &.active {
+        border-color: var(--secondary);
+      }
+
+      &:hover {
+        border-color: var(--secondary);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--secondary) 75%, transparent);
       }
     }
 
     &.success {
-      & svg {
-        & path {
-          fill: var(--success);
-        }
+
+      &.active {
+        border-color: var(--success);
+      }
+
+      &:hover {
+        border-color: var(--success);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--success) 75%, transparent);
       }
     }
 
     &.warning {
-      & svg {
-        & path {
-          fill: var(--warning);
-        }
+
+      &.active {
+        border-color: var(--warning);
+      }
+
+      &:hover {
+        border-color: var(--warning);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--warning) 75%, transparent);
       }
     }
 
     &.danger {
-      & svg {
-        & path {
-          fill: var(--danger);
-        }
+
+      &.active {
+        border-color: var(--danger);
+      }
+
+      &:hover {
+        border-color: var(--danger);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--danger) 75%, transparent);
       }
     }
 
     &.info {
-      & svg {
-        & path {
-          fill: var(--info);
-        }
+
+      &.active {
+        border-color: var(--info);
+      }
+
+      &:hover {
+        border-color: var(--info);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--info) 75%, transparent);
       }
     }
 
     &.link {
-      & svg {
-        & path {
-          fill: var(--link);
-        }
+
+      &.active {
+        border-color: var(--link);
+      }
+
+      &:hover {
+        border-color: var(--link);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--link) 75%, transparent);
       }
     }
 
     &.white {
-      & svg {
-        & path {
-          fill: var(--white);
-        }
+
+      &.active {
+        border-color: var(--white);
+      }
+
+      &:hover {
+        border-color: var(--white);
+
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--white) 75%, transparent);
       }
     }
 
     &.black {
-      & svg {
-        & path {
-          fill: var(--black);
-        }
+
+      &.active {
+        border-color: var(--black);
+      }
+
+      &:hover {
+        border-color: var(--black);
+      }
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--black) 75%, transparent);
       }
     }
 
-    &.text {
-      & svg {
-        & path {
-          fill: var(--text);
+
+    & .arrow {
+      &.active {
+        & svg {
+          transform: rotate(180deg);
         }
       }
+
+      & svg {
+        transition: 0.1s all ease;
+        width: 20px;
+        opacity: 0.3;
+        fill: var(--text);
+        height: 20px;
+      }
+    }
+
+    &.small {
+      padding: var(--select-padding-small);
+    }
+
+    &.medium {
+      padding: var(--select-padding-medium);
+    }
+
+    &.large {
+      padding: var(--select-padding-large);
     }
   }
-
-
-  & .placeholder {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    cursor: pointer;
-    border: 1px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    color: rgba(0, 0, 0, 0.6);
-    background: rgb(255, 255, 255);
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 2px;
-  }
-
 
   & .select {
-    display: flex;
-    flex-direction: column;
+    background-color: var(--bg);
     position: absolute;
-    right: 0;
+    z-index: 10;
     left: 0;
-    box-sizing: border-box;
-    z-index: 100;
-    border-style: solid;
-    border-width: 1px;
-    max-height: 50vh;
+    right: 0;
+    min-width: 100%;
+    max-height: 300px;
+    scroll-behavior: smooth;
     overflow-y: scroll;
+    border: 1px solid var(--gray);
+    padding: 2px;
+    display: flex; /* Элемент остаётся в разметке */
+    flex-direction: column;
+    gap: 3px;
+    transform: translateY(-10px); /* Начинаем чуть выше */
+    opacity: 0; /* Начинаем с прозрачности */
+    visibility: hidden; /* Делаем элемент невидимым */
+    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s 0.2s; /* Переходы и задержка для visibility */
 
-    &.borderH1 {
-      border-radius: var(--border-radius-1);
+    &.visible {
+      transform: translateY(0); /* Плавно опускаем на место */
+      opacity: 1; /* Плавно показываем */
+      visibility: visible; /* Видимость */
+      transition: transform 0.2s ease, opacity 0.2s ease; /* Убираем задержку */
     }
 
-    &.borderH2 {
-      border-radius: var(--border-radius-2)
+    &.small {
+      top: 40px;
     }
 
-    &.borderH3 {
-      border-radius: var(--border-radius-3)
+    &.medium {
+      top: 48px;
     }
 
-    &.borderH4 {
-      border-radius: var(--border-radius-4)
+    &.large {
+      top: 56px;
     }
 
-    &.borderH5 {
-      border-radius: var(--border-radius-5)
+    &.primary {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--primary) 75%, transparent);
+
+      }
     }
 
-    &.borderH6 {
-      border-radius: var(--border-radius-6)
+    &.secondary {
+
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--secondary) 75%, transparent);
+
+      }
     }
 
-    &.bg_primary {
-      background-color: var(--primary);
+    &.success {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--success) 75%, transparent);
+
+      }
     }
 
-    &.bg_secondary {
-      background-color: var(--secondary);
+    &.warning {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--warning) 75%, transparent);
+
+      }
     }
 
-    &.bg_success {
-      background-color: var(--success);
+    &.danger {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--danger) 75%, transparent);
+
+      }
     }
 
-    &.bg_warning {
-      background-color: var(--warning);
+    &.info {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--info) 75%, transparent);
+
+      }
     }
 
-    &.bg_danger {
-      background-color: var(--danger);
+    &.link {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--link) 75%, transparent);
+
+      }
     }
 
-    &.bg_info {
-      background-color: var(--info);
+    &.white {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--white) 75%, transparent);
+
+      }
     }
 
-    &.bg_link {
-      background-color: var(--link);
-    }
-
-    &.bg_white {
-      background-color: var(--white);
-    }
-
-    &.bg_black {
-      background-color: var(--black);
-    }
-
-    &.bg_bgDark {
-      background-color: var(--bg-dark);
-    }
-
-    &.bg_bg {
-      background-color: var(--bg);
-    }
-
-
-    &.border_primary {
-      border-color: var(--primary);
-    }
-
-    &.border_secondary {
-      border-color: var(--secondary);
-    }
-
-    &.border_success {
-      border-color: var(--success);
-    }
-
-    &.border_warning {
-      border-color: var(--warning);
-    }
-
-    &.border_danger {
-      border-color: var(--danger);
-    }
-
-    &.border_info {
-      border-color: var(--info);
-    }
-
-    &.border_link {
-      border-color: var(--link);
-    }
-
-    &.border_white {
-      border-color: var(--white);
-    }
-
-    &.border_black {
-      border-color: var(--black);
-    }
-
-    &.border_text {
-      border-color: var(--text);
+    &.black {
+      &:focus {
+        outline: 1px solid color-mix(in srgb, var(--black) 75%, transparent);
+      }
     }
   }
 }

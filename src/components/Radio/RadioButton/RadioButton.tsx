@@ -1,78 +1,69 @@
 import cls from './RadioButton.module.scss';
-import { Text } from '@components';
-import { IRadioButtonProps } from './RadioButton.props.ts';
+import { ChangeEvent } from 'react';
 import { classNames } from '@helpers';
+import { IRadioButtonProps } from './RadioButton.props.ts';
 
 export const RadioButton = (
     {
-        label,
-        size = 'h1',
-        textColor = 'text',
-        radioColor = 'primary',
-        fontFamily = 'first',
+        value,
+        checked = false,
         onChange,
-        checked,
+        children,
+        gap,
+        align,
+        color,
+        size,
         bgColor = 'bg',
         className,
         id,
         ...props
-    }: IRadioButtonProps,
-) => {
+    }: IRadioButtonProps) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (onChange) {
+            onChange(e);
+        }
+    };
+    const style = {
+        gap: `${gap}px`, // Добавление gap через inline стиль
+        alignItems: align,
+    };
+
     return (
-        <div className={cls.wrapper}>
+        <label className={classNames(cls.label, {
+            [cls.checked]: checked,
+            // COLOR
+            [cls.primary]: color === 'primary',
+            [cls.secondary]: color === 'secondary',
+            [cls.success]: color === 'success',
+            [cls.warning]: color === 'warning',
+            [cls.danger]: color === 'danger',
+            [cls.info]: color === 'info',
+            [cls.link]: color === 'link',
+            [cls.white]: color === 'white',
+            [cls.black]: color === 'black',
+            [cls.text]: color === 'text',
+            // SIZES
+            [cls.small]: size === 'small',
+            [cls.medium]: size === 'medium',
+            [cls.large]: size === 'large',
+            // BG COLOR
+            [cls.bg_bg]: bgColor === 'bg',
+            [cls.bg_dark]: bgColor === 'bgDark',
+        }, [className])}
+               style={style}
+        >
             <input
-                {...props}
                 type="radio"
-                checked={checked}
-                onChange={onChange}
                 id={id}
-                name={`${id}_radio`}
-                className={classNames(cls.radio, {
-                    // Text color
-                    [cls.primary]: radioColor === 'primary',
-                    [cls.secondary]: radioColor === 'secondary',
-                    [cls.success]: radioColor === 'success',
-                    [cls.warning]: radioColor === 'warning',
-                    [cls.danger]: radioColor === 'danger',
-                    [cls.info]: radioColor === 'info',
-                    [cls.link]: radioColor === 'link',
-                    [cls.white]: radioColor === 'white',
-                    [cls.black]: radioColor === 'black',
-                    [cls.text]: radioColor === 'text',
-
-                    [cls.primary_bg]: bgColor === 'primary',
-                    [cls.secondary_bg]: bgColor === 'secondary',
-                    [cls.success_bg]: bgColor === 'success',
-                    [cls.warning_bg]: bgColor === 'warning',
-                    [cls.danger_bg]: bgColor === 'danger',
-                    [cls.info_bg]: bgColor === 'info',
-                    [cls.link_bg]: bgColor === 'link',
-                    [cls.white_bg]: bgColor === 'white',
-                    [cls.black_bg]: bgColor === 'black',
-                    [cls.bg_bg]: bgColor === 'bg',
-                    [cls.bgDark_bg]: bgColor === 'bgDark',
-
-                    // Size
-                    [cls.h1]: size === 'h1',
-                    [cls.h2]: size === 'h2',
-                    [cls.h3]: size === 'h3',
-                    [cls.h4]: size === 'h4',
-                    [cls.h5]: size === 'h5',
-                    [cls.h6]: size === 'h6',
-                }, [className])}
+                value={value}
+                checked={checked}
+                onChange={handleChange}
+                className={cls.radio}
+                {...props}
             />
-
-            <label htmlFor={id} className={cls.label}>
-                <Text.Paragraph
-                    size={size}
-                    color={textColor}
-                    fontFamily={fontFamily}
-                    className={cls.label_text}
-                >
-                    {label}
-                </Text.Paragraph>
-            </label>
-        </div>
+            <span>
+                  {children}
+            </span>
+        </label>
     );
 };
-

@@ -1,11 +1,9 @@
 import cls from './SelectMany.module.scss';
-import { useState, useEffect, useRef } from 'react';
-import type { MouseEventHandler } from 'react';
+import { useState, useEffect, useRef, CSSProperties, MouseEventHandler } from 'react';
 import { Option, OptionEl } from '../Option';
 import { ISelectManyProps } from './SelectMany.props.ts';
 import { classNames } from '@helpers';
 import { Text } from '@components';
-import { Tag } from '../../Tag';
 
 export const SelectMany = (
     {
@@ -13,18 +11,11 @@ export const SelectMany = (
         placeholder,
         selected = [],
         onChange,
-        bgColor = 'bg',
-        borderColor = 'primary',
-        textColor = 'text',
-        size = 'h3',
-        weight = '400',
+        size = 'medium',
         fontFamily = 'first',
-        borderRadius = 'h6',
+        borderRadius = 5,
+        color = 'primary',
         onClose,
-        tagRadius = 'h3',
-        tagBgColor = 'primary',
-        tagSize = 'h3',
-        tagColor = 'text',
         className,
         ...props
     }: ISelectManyProps) => {
@@ -34,15 +25,15 @@ export const SelectMany = (
 
     useEffect(() => {
         const handleClick = (event: MouseEvent) => {
-            const { target } = event;
-            if (target instanceof Node && !rootRef.current?.contains(target)) {
-                isOpen && onClose?.();
+            if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
+                if (isOpen) {
+                    onClose?.();
+                }
                 setIsOpen(false);
             }
         };
 
         window.addEventListener('click', handleClick);
-
         return () => {
             window.removeEventListener('click', handleClick);
         };
@@ -58,192 +49,147 @@ export const SelectMany = (
             }
         };
         placeholderEl.addEventListener('keydown', handleEnterKeyDown);
-
         return () => {
             placeholderEl.removeEventListener('keydown', handleEnterKeyDown);
         };
     }, []);
 
-    const handleOptionClick = (value: Option) => {
-        setIsOpen(false);
-        if (onChange) {
-            onChange(value);
+    const handleOptionClick = (option: Option) => {
+        const newSelected = selected?.some(sel => sel.value === option.value)
+            ? selected?.filter(sel => sel.value !== option.value) // Remove if already selected
+            : [...(selected ?? []), option]; // Add if not selected
+
+        onChange?.(newSelected);
+    };
+
+    const handleIconClick = (option: Option, event: React.MouseEvent) => {
+        event.stopPropagation(); // Prevent click from bubbling up
+        if (selected) {
+            const newSelected = selected.filter(sel => sel.value !== option.value);
+            onChange?.(newSelected);
         }
     };
-    const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = () => {
+
+    const handlePlaceholderClick: MouseEventHandler<HTMLDivElement> = () => {
         setIsOpen((prev) => !prev);
     };
 
+    const style: CSSProperties = {
+        borderRadius: `${borderRadius}px`,
+    };
+
+    const textSize = (): 'h3' | 'h2' | 'h1' | 'h4' | 'h5' | 'h6' => {
+        switch (size) {
+            case 'small':
+                return 'h3';
+            case 'medium':
+                return 'h2';
+            case 'large':
+                return 'h1';
+            default:
+                return 'h2';
+        }
+    };
+
     return (
-        <div
-            {...props}
-            className={classNames(cls.selectWrapper, {
-                // ЦВЕТА
-                [cls.primary]: bgColor === 'primary',
-                [cls.secondary]: bgColor === 'secondary',
-                [cls.success]: bgColor === 'success',
-                [cls.warning]: bgColor === 'warning',
-                [cls.danger]: bgColor === 'danger',
-                [cls.info]: bgColor === 'info',
-                [cls.link]: bgColor === 'link',
-                [cls.white]: bgColor === 'white',
-                [cls.black]: bgColor === 'black',
-
-
-                [cls.border_primary]: borderColor === 'primary',
-                [cls.border_secondary]: borderColor === 'secondary',
-                [cls.border_success]: borderColor === 'success',
-                [cls.border_warning]: borderColor === 'warning',
-                [cls.border_danger]: borderColor === 'danger',
-                [cls.border_info]: borderColor === 'info',
-                [cls.border_link]: borderColor === 'link',
-                [cls.border_white]: borderColor === 'white',
-                [cls.border_black]: borderColor === 'black',
-
-
-                [cls.bg_primary]: bgColor === 'primary',
-                [cls.bg_secondary]: bgColor === 'secondary',
-                [cls.bg_success]: bgColor === 'success',
-                [cls.bg_warning]: bgColor === 'warning',
-                [cls.bg_danger]: bgColor === 'danger',
-                [cls.bg_info]: bgColor === 'info',
-                [cls.bg_link]: bgColor === 'link',
-                [cls.bg_white]: bgColor === 'white',
-                [cls.bg_black]: bgColor === 'black',
-                [cls.bg_bgDark]: bgColor === 'bg',
-                [cls.bg_bg]: bgColor === 'bgDark',
-
-                // Border radius
-                [cls.borderH1]: borderRadius === 'h1',
-                [cls.borderH2]: borderRadius === 'h2',
-                [cls.borderH3]: borderRadius === 'h3',
-                [cls.borderH4]: borderRadius === 'h4',
-                [cls.borderH5]: borderRadius === 'h5',
-                [cls.borderH6]: borderRadius === 'h6',
-            }, [className])}
-            ref={rootRef}
-        >
-            <div className={cls.info}
-
-                 onClick={handlePlaceHolderClick}
-                 role="button"
-                 tabIndex={0}
-                 ref={placeholderRef}
-            >
-                <div
-                    className={classNames(cls.placeholder, {
-                        // РАЗМЕРЫ
-                        [cls.h1]: size === 'h1',
-                        [cls.h2]: size === 'h2',
-                        [cls.h3]: size === 'h3',
-                        [cls.h4]: size === 'h4',
-                        [cls.h5]: size === 'h5',
-                        [cls.h6]: size === 'h6',
-                    }, [])}
-                >
-
-                    {selected?.length ? selected?.map((item) => (
-                            <Tag
-                                clickable={true}
-                                onClick={() => onChange ? onChange(item) : null}
-                                key={item.value}
-                                size={tagSize}
-                                borderRadius={tagRadius}
-                                textColor={tagColor}
-                                bgColor={tagBgColor}
-                            >
-                                {item.label}
-                            </Tag>
-                        )) :
-                        <Text.Paragraph
-                            size={size}
-                            color={textColor}
-                            weight={weight}
-                            fontFamily={fontFamily}
-                        >
-                            {placeholder}
-                        </Text.Paragraph>
-                    }
-                </div>
-                <div className={classNames(cls.arrow, {
+        <div {...props} className={cls.wrapper} ref={rootRef}>
+            <div
+                style={style}
+                className={classNames(cls.placeholder, {
                     [cls.active]: isOpen,
-                    // ЦВЕТА
-                    [cls.primary]: textColor === 'primary',
-                    [cls.secondary]: textColor === 'secondary',
-                    [cls.success]: textColor === 'success',
-                    [cls.warning]: textColor === 'warning',
-                    [cls.danger]: textColor === 'danger',
-                    [cls.info]: textColor === 'info',
-                    [cls.link]: textColor === 'link',
-                    [cls.white]: textColor === 'white',
-                    [cls.black]: textColor === 'black',
-                    [cls.text]: textColor === 'text',
+                    [cls.primary]: color === 'primary',
+                    [cls.secondary]: color === 'secondary',
+                    [cls.success]: color === 'success',
+                    [cls.warning]: color === 'warning',
+                    [cls.danger]: color === 'danger',
+                    [cls.info]: color === 'info',
+                    [cls.link]: color === 'link',
+                    [cls.white]: color === 'white',
+                    [cls.black]: color === 'black',
+                    [cls.text]: color === 'text',
+                    [cls.small]: size === 'small',
+                    [cls.medium]: size === 'medium',
+                    [cls.large]: size === 'large',
+                }, [className])}
+                onClick={handlePlaceholderClick}
+                role="button"
+                tabIndex={0}
+                ref={placeholderRef}
+            >
+                {!selected?.length &&
+                    <Text.Paragraph
+                        size={textSize()}
+                        color="text"
+                        fontFamily={fontFamily}
+                    >
+                        {placeholder}
+                    </Text.Paragraph>
+                }
 
-                    // РАЗМЕРЫ
-                    [cls.h1]: size === 'h1',
-                    [cls.h2]: size === 'h2',
-                    [cls.h3]: size === 'h3',
-                    [cls.h4]: size === 'h4',
-                    [cls.h5]: size === 'h5',
-                    [cls.h6]: size === 'h6',
+                {selected && selected?.length > 0
+                    &&
+                    <ul className={cls.selectedList}>
+                        {selected?.map(opt => (
+                            <li key={opt.value} style={style} className={cls.selectedListItem}>
+                                <Text.Paragraph
+                                    size={textSize()}
+                                    color="text"
+                                    fontFamily={fontFamily}
+                                >
+                                    {opt.label}
+                                </Text.Paragraph>
+                                <span className={cls.icon} onClick={(event) => handleIconClick(opt, event)}>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+                                </svg>
+                            </span>
+                            </li>
+                        ))}
+                    </ul>
+                }
 
-                }, [])}>
+                <div className={classNames(cls.arrow, { [cls.active]: isOpen }, [])}>
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path
                             d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
                     </svg>
-
                 </div>
             </div>
-            {isOpen && (
-                <ul className={classNames(cls.select, {
-                    [cls.active]: isOpen,
-                    [cls.bg_primary]: bgColor === 'primary',
-                    [cls.bg_secondary]: bgColor === 'secondary',
-                    [cls.bg_success]: bgColor === 'success',
-                    [cls.bg_warning]: bgColor === 'warning',
-                    [cls.bg_danger]: bgColor === 'danger',
-                    [cls.bg_info]: bgColor === 'info',
-                    [cls.bg_link]: bgColor === 'link',
-                    [cls.bg_white]: bgColor === 'white',
-                    [cls.bg_black]: bgColor === 'black',
-                    [cls.bg_bgDark]: bgColor === 'bg',
-                    [cls.bg_bg]: bgColor === 'bgDark',
+            <ul
+                style={style}
+                className={classNames(cls.select, {
+                    [cls.small]: size === 'small',
+                    [cls.medium]: size === 'medium',
+                    [cls.large]: size === 'large',
 
-                    [cls.borderH1]: borderRadius === 'h1',
-                    [cls.borderH2]: borderRadius === 'h2',
-                    [cls.borderH3]: borderRadius === 'h3',
-                    [cls.borderH4]: borderRadius === 'h4',
-                    [cls.borderH5]: borderRadius === 'h5',
-                    [cls.borderH6]: borderRadius === 'h6',
-
-                    [cls.border_primary]: borderColor === 'primary',
-                    [cls.border_secondary]: borderColor === 'secondary',
-                    [cls.border_success]: borderColor === 'success',
-                    [cls.border_warning]: borderColor === 'warning',
-                    [cls.border_danger]: borderColor === 'danger',
-                    [cls.border_info]: borderColor === 'info',
-                    [cls.border_link]: borderColor === 'link',
-                    [cls.border_white]: borderColor === 'white',
-                    [cls.border_black]: borderColor === 'black',
-                }, [])} data-testid="selectDropdown">
-                    {options.map((option) => (
-                        <OptionEl
-                            size={size}
-                            active={selected?.some((item) => item.value === option.value)}
-                            borderRadius={borderRadius}
-                            textColor={textColor}
-                            fontFamily={fontFamily}
-                            bgColor={bgColor}
-                            weight={weight}
-                            key={option.value}
-                            option={option}
-                            onClick={handleOptionClick}
-                        />
-                    ))}
-                </ul>
-            )}
+                    [cls.primary]: color === 'primary',
+                    [cls.secondary]: color === 'secondary',
+                    [cls.success]: color === 'success',
+                    [cls.warning]: color === 'warning',
+                    [cls.danger]: color === 'danger',
+                    [cls.info]: color === 'info',
+                    [cls.link]: color === 'link',
+                    [cls.white]: color === 'white',
+                    [cls.black]: color === 'black',
+                    [cls.text]: color === 'text',
+                    [cls.visible]: isOpen, // Add visible class when dropdown is open
+                }, [])}
+                data-testid="selectDropdown"
+            >
+                {options.map((option) => (
+                    <OptionEl
+                        {...option}
+                        size={size}
+                        color={color}
+                        active={selected?.some(sel => sel.value === option.value)}
+                        borderRadius={borderRadius}
+                        key={option.value}
+                        option={option}
+                        onClick={() => handleOptionClick(option)}
+                    />
+                ))}
+            </ul>
         </div>
     );
 };
-

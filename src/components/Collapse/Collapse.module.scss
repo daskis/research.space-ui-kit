@@ -1,0 +1,86 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &:focus {
+    outline: 1px solid var(--gray);
+  }
+  & .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    & .arrow {
+      & svg {
+        transition: 0.15s all ease;
+        fill: var(--gray);
+      }
+
+      &.active {
+        & svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  & .content {
+    display: block;
+
+    &.close {
+      display: none;
+    }
+  }
+
+  &.small {
+    & .heading {
+      padding: var(--collapse-padding-small) 0;
+
+      & .arrow {
+        & svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    & .content {
+      padding: var(--collapse-padding-small) 0;
+    }
+  }
+
+  &.medium {
+    & .heading {
+      padding: var(--collapse-padding-medium) 0;
+
+      & .arrow {
+        & svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    & .content {
+      padding: var(--collapse-padding-medium) 0;
+    }
+  }
+
+  &.large {
+    & .heading {
+      padding: var(--collapse-padding-large) 0;
+
+      & .arrow {
+        & svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    & .content {
+      padding: var(--collapse-padding-large) 0;
+    }
+  }
+}

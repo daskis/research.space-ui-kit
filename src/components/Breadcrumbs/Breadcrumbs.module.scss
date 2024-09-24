@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+
+  & .separator {
+    opacity: 0.7;
+  }
+
+  & .item {
+    transition: 0.3s all ease;
+    display: flex;
+    align-items: center;
+
+    & .link {
+      transition: 0.3s all ease;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--gray) 10%, transparent);
+
+      & .link {
+        opacity: 1;
+      }
+    }
+
+    &.small {
+      & .link {
+        padding: var(--breadcrumbs-padding-small);
+      }
+    }
+
+    &.medium {
+      & .link {
+        padding: var(--breadcrumbs-padding-medium);
+      }
+    }
+
+    &.large {
+      & .link {
+        padding: var(--breadcrumbs-padding-large);
+      }
+    }
+  }
+}

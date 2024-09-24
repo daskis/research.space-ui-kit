@@ -1,74 +1,81 @@
 import cls from './CheckboxButton.module.scss';
-import { Text } from '@components';
-import { ICheckboxButtonProps } from './CheckboxButton.props';
+import { ChangeEvent } from 'react';
 import { classNames } from '@helpers';
+import { ICheckboxButtonProps } from './CheckboxButton.props';
 
-export const CheckboxButton = ({
-                                   label,
-                                   size = 'h1',
-                                   textColor = 'text',
-                                   checkboxColor = 'primary',
-                                   fontFamily = 'first',
-                                   onChange,
-                                   checked,
-                                   bgColor = 'bg',
-                                   className,
-                                   id,
-                                   ...props
-                               }: ICheckboxButtonProps) => {
+export const CheckboxButton = (
+    {
+        value,
+        checked = false,
+        onChange,
+        children,
+        gap,
+        align,
+        color,
+        size,
+        bgColor,
+        className,
+        id,
+        ...props
+    }: ICheckboxButtonProps) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (onChange) {
+            onChange(e);
+        }
+    };
+
+    const style = {
+        gap: `${gap}px`,
+        alignItems: align,
+    };
+
     return (
-        <div className={cls.wrapper}>
+        <label
+            className={classNames(cls.label, {
+                // COLORS
+                [cls.checked]: checked,
+                [cls.primary]: color === 'primary',
+                [cls.secondary]: color === 'secondary',
+                [cls.success]: color === 'success',
+                [cls.warning]: color === 'warning',
+                [cls.danger]: color === 'danger',
+                [cls.info]: color === 'info',
+                [cls.link]: color === 'link',
+                [cls.white]: color === 'white',
+                [cls.black]: color === 'black',
+                [cls.text]: color === 'text',
+                // SIZES
+                [cls.small]: size === 'small',
+                [cls.medium]: size === 'medium',
+                [cls.large]: size === 'large',
+                // BG COLORS
+                [cls.bg_bg]: bgColor === 'bg',
+                [cls.bg_dark]: bgColor === 'bgDark',
+            }, [className])}
+            style={style}
+        >
             <input
-                {...props}
                 type="checkbox"
-                checked={checked}
-                onChange={onChange}
                 id={id}
+                value={value}
+                checked={checked}
+                onChange={handleChange}
                 className={classNames(cls.checkbox, {
-                    // Checkbox color
-                    [cls.primary]: checkboxColor === 'primary',
-                    [cls.secondary]: checkboxColor === 'secondary',
-                    [cls.success]: checkboxColor === 'success',
-                    [cls.warning]: checkboxColor === 'warning',
-                    [cls.danger]: checkboxColor === 'danger',
-                    [cls.info]: checkboxColor === 'info',
-                    [cls.link]: checkboxColor === 'link',
-                    [cls.white]: checkboxColor === 'white',
-                    [cls.black]: checkboxColor === 'black',
-                    [cls.text]: checkboxColor === 'text',
-
-                    [cls.primary_bg]: bgColor === 'primary',
-                    [cls.secondary_bg]: bgColor === 'secondary',
-                    [cls.success_bg]: bgColor === 'success',
-                    [cls.warning_bg]: bgColor === 'warning',
-                    [cls.danger_bg]: bgColor === 'danger',
-                    [cls.info_bg]: bgColor === 'info',
-                    [cls.link_bg]: bgColor === 'link',
-                    [cls.white_bg]: bgColor === 'white',
-                    [cls.black_bg]: bgColor === 'black',
-                    [cls.bg_bg]: bgColor === 'bg',
-                    [cls.bgDark_bg]: bgColor === 'bgDark',
-
-                    // Size
-                    [cls.h1]: size === 'h1',
-                    [cls.h2]: size === 'h2',
-                    [cls.h3]: size === 'h3',
-                    [cls.h4]: size === 'h4',
-                    [cls.h5]: size === 'h5',
-                    [cls.h6]: size === 'h6',
-                }, [className])}
+                    // COLORS
+                    [cls.primary]: color === 'primary',
+                    [cls.secondary]: color === 'secondary',
+                    [cls.success]: color === 'success',
+                    [cls.warning]: color === 'warning',
+                    [cls.danger]: color === 'danger',
+                    [cls.info]: color === 'info',
+                    [cls.link]: color === 'link',
+                    [cls.white]: color === 'white',
+                    [cls.black]: color === 'black',
+                    [cls.text]: color === 'text',
+                }, [])}
+                {...props}
             />
-
-            <label htmlFor={id} className={cls.label}>
-                <Text.Paragraph
-                    size={size}
-                    color={textColor}
-                    fontFamily={fontFamily}
-                    className={cls.label_text}
-                >
-                    {label}
-                </Text.Paragraph>
-            </label>
-        </div>
+            <span>{children}</span>
+        </label>
     );
 };

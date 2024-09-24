@@ -1,48 +1,39 @@
+import cls from './App.module.scss';
+import { Pagination, ThemeSwitcher } from './components';
 import { useState } from 'react';
-import { Select, Option } from '@components';
 
-const list = [
-    { 'label': 'янв', 'value': '01' },
-    { 'label': 'фев', 'value': '02' },
-    { 'label': 'мар', 'value': '03' },
-    { 'label': 'апр', 'value': '04' },
-    { 'label': 'май', 'value': '05' },
-    { 'label': 'июн', 'value': '06' },
-    { 'label': 'июл', 'value': '07' },
-    { 'label': 'авг', 'value': '08' },
-    { 'label': 'сен', 'value': '09' },
-    { 'label': 'окт', 'value': '10' },
-    { 'label': 'ноя', 'value': '11' },
-    { 'label': 'дек', 'value': '12' },
-];
-
-function App() {
-    const [selectedMonths, setSelectedMonths] = useState<Option[]>([]);
-
-    const handleMonthsSelect = (value: Option) => {
-        setSelectedMonths((prevState) =>
-            prevState.some((item) => item.value === value.value)
-                ? prevState.filter((item) => item.value !== value.value)
-                : [...prevState, value],
-        );
-    };
-
+const App = () => {
+    const [current, setCurrent] = useState<number>(1);
     return (
-        <div>
-            <Select.Many
-                tagSize="h4"
-                tagBgColor="secondary"
-                tagColor="secondary"
-                tagRadius="h1"
-                size={'h1'}
-                options={list}
-                borderColor="secondary"
-                selected={selectedMonths}
-                onChange={handleMonthsSelect}
-                placeholder="Выберите месяцы"
+        <div className={cls.list}>
+            <ThemeSwitcher />
+            <Pagination
+                total={500}
+                current={current}
+                onChange={(page) => setCurrent(page)}
+                color="primary"
+                size="small"
+                disabled={false}
+            />
+            <Pagination
+                total={500}
+                current={current}
+                onChange={(page) => setCurrent(page)}
+                color="primary"
+                size="medium"
+                disabled={false}
+            />
+            <Pagination
+                total={500}
+                current={current}
+                onChange={(page) => setCurrent(page)}
+                color="secondary"
+                size="large"
+                disabled={false}
             />
         </div>
     );
-}
+};
+
 
 export default App;
