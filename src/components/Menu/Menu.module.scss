@@ -1,0 +1,65 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &Item {
+    width: 100%;
+    transition: 0.3s all ease;
+
+    & .link {
+      display: block;
+      width: 100%;
+
+      &.small {
+        padding: var(--menu-padding-small);
+      }
+
+      &.medium {
+        padding: var(--menu-padding-medium);
+      }
+
+      &.large {
+        padding: var(--menu-padding-large);
+      }
+    }
+
+    &.active {
+      &.primary {
+        background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+      }
+
+      &.secondary {
+        background-color: color-mix(in srgb, var(--secondary) 10%, transparent);
+      }
+
+      &.success {
+        background-color: color-mix(in srgb, var(--success) 10%, transparent);
+      }
+
+      &.warning {
+        background-color: color-mix(in srgb, var(--warning) 10%, transparent);
+      }
+
+      &.danger {
+        background-color: color-mix(in srgb, var(--danger) 10%, transparent);
+      }
+
+      &.info {
+        background-color: color-mix(in srgb, var(--info) 10%, transparent);
+      }
+
+      &.link {
+        background-color: color-mix(in srgb, var(--link) 10%, transparent);
+      }
+
+      &.white {
+        background-color: color-mix(in srgb, var(--white) 10%, transparent);
+      }
+
+      &.black {
+        background-color: color-mix(in srgb, var(--black) 10%, transparent);
+      }
+    }
+  }
+}

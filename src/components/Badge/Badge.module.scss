@@ -1,0 +1,71 @@
+.wrapper {
+  position: relative;
+
+  & .badge {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--bg);
+
+    &.small {
+      width: var(--badge-size-small);
+      height: var(--badge-size-small);
+      top: -8px;
+      right: -8px;
+    }
+
+    &.medium {
+      width: var(--badge-size-medium);
+      height: var(--badge-size-medium);
+      top: -10px;
+      right: -10px;
+    }
+
+    &.large {
+      width: var(--badge-size-large);
+      height: var(--badge-size-large);
+      top: -12px;
+      right: -12px;
+    }
+
+    &.primary {
+      background-color: var(--primary);
+    }
+
+    &.secondary {
+      background-color: var(--secondary);
+    }
+
+    &.success {
+      background-color: var(--success);
+    }
+
+    &.warning {
+      background-color: var(--warning);
+      border-color: var(--warning);
+    }
+
+    &.danger {
+      background-color: var(--danger);
+    }
+
+    &.info {
+      background-color: var(--info);
+    }
+
+    &.link {
+      background-color: var(--link);
+    }
+
+    &.white {
+      background-color: var(--white);
+    }
+
+    &.black {
+      background-color: var(--black);
+    }
+  }
+}

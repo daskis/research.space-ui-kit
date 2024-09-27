@@ -1,0 +1,71 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--gray);
+  align-items: center;
+  padding: 5px;
+
+  & .heading {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    & .date {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      & .btn {
+        cursor: pointer;
+        padding: 10px 0;
+        background-color: inherit;
+      }
+    }
+
+    & .buttonWrapper {
+      display: flex;
+      align-items: center;
+
+      & .btn {
+        cursor: pointer;
+        padding: 10px;
+        background-color: inherit;
+
+        & svg {
+          & path {
+            fill: var(--text);
+          }
+        }
+
+        &.small {
+          & svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        &.medium {
+          & svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        &.large {
+          & svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+
+  }
+
+  & .body {
+    width: 100%;
+  }
+}

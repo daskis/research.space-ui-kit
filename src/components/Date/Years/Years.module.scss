@@ -1,0 +1,34 @@
+@import "../../../styles/global";
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+
+  & .btn {
+    background-color: var(--bg);
+    padding: 10px 20px;
+    transition: 0.3s all ease;
+    cursor: pointer;
+    border-radius: 5px;
+
+    @each $name, $value in $colors {
+      &.selected {
+        &.#{$name} {
+          background-color: color-mix(in srgb, #{$value} 10%, transparent);
+        }
+      }
+
+      &.today {
+        &.#{$name} {
+          outline: 1px solid color-mix(in srgb, #{$value} 50%, transparent);
+        }
+      }
+    }
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+}

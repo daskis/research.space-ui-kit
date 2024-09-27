@@ -1,0 +1,59 @@
+@import "../../../styles/global";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  gap: 10px;
+
+  & .daysOfWeek {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+
+    & .weekday {
+      text-align: center;
+    }
+  }
+
+  & .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+
+    & .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      background: var(--bg);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        filter: brightness(90%);
+      }
+
+      @each $name, $value in $colors {
+        &.selected {
+          &.#{$name} {
+            background-color: color-mix(in srgb, #{$value} 10%, transparent);
+          }
+        }
+
+        &.today {
+          &.#{$name} {
+            outline: 1px solid color-mix(in srgb, #{$value} 50%, transparent);
+          }
+        }
+      }
+    }
+
+
+    .otherMonth {
+      opacity: 0.3;
+    }
+  }
+
+}
