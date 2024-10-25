@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {LOCAL_STORAGE_THEME_KEY, Theme, UseThemeResult} from "./types";
-import {ThemeContent} from './ThemeContent.ts';
+import { ThemeContent } from '@app/providers';
 
 
 export function useTheme(): UseThemeResult {

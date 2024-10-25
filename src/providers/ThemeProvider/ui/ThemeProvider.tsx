@@ -1,6 +1,5 @@
-import {ReactNode, useMemo, useState} from 'react';
-import {LOCAL_STORAGE_THEME_KEY, Theme, ThemeContent} from '../lib';
-import {classNames} from "@helpers";
+import { ReactNode, useMemo, useState } from 'react';
+import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContent } from '@app/providers';
 
 const getPreferredTheme = (): Theme => {
     const theme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
@@ -22,7 +21,7 @@ type ThemeProps = {
     children: ReactNode
 }
 
-export const ThemeProvider = ({children}: ThemeProps) => {
+export const ThemeProvider = ({ children }: ThemeProps) => {
     const [theme, setTheme] = useState<Theme>(defaultTheme);
 
     const defaultProps = useMemo(() => ({
@@ -32,9 +31,7 @@ export const ThemeProvider = ({children}: ThemeProps) => {
 
     return (
         <ThemeContent.Provider value={defaultProps}>
-            <div className={classNames("app", {}, [theme])}>
-                {children}
-            </div>
+            {children}
         </ThemeContent.Provider>
     );
 };
