@@ -1,3 +1,2 @@
 export * from './Checkbox.tsx';
-export * from './CheckboxGroup';
-export * from './CheckboxButton';
+export * from './Checkbox.props.ts';

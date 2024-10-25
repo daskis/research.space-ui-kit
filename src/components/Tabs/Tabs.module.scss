@@ -1,103 +1,64 @@
+@import '@styles/global';
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
 }
 
 .list {
-  display: flex;
-  position: relative;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  &.vertical {
-    border-bottom: none;
-  }
-
-  &Item {
-    cursor: pointer;
+    display: flex;
     position: relative;
-    transition: color 0.3s ease;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-    &.small {
-      padding: var(--tabs-padding-small);
+    &.vertical {
+        border-bottom: none;
     }
 
-    &.medium {
-      padding: var(--tabs-padding-medium);
-    }
+    &Item {
+        cursor: pointer;
+        position: relative;
+        transition: color 0.3s ease;
 
-    &.large {
-      padding: var(--tabs-padding-large);
-    }
+        @each $key, $value in $tabs-padding {
+            &.#{$key} {
+                padding: $value;
+            }
+        }
 
-    & .label {
-      transition: 0.3s color ease;
+        & .label {
+            transition: 0.3s color ease;
+        }
     }
-  }
 }
 
 .line {
-  position: absolute;
-  transition: left 0.15s ease, width 0.15s ease, top 0.15s ease, height 0.15s ease;
+    position: absolute;
+    transition:
+        left 0.15s ease,
+        width 0.15s ease,
+        top 0.15s ease,
+        height 0.15s ease;
 
+    @each $key, $value in $colors {
+        &.#{$key} {
+            background-color: $value;
+        }
+    }
+    &.horizontal {
+        height: 2px;
+        bottom: -2px;
+        right: 0;
+        width: 100%;
+    }
 
-  &.primary {
-    background-color: var(--primary);
-  }
-
-  &.secondary {
-    background-color: var(--secondary);
-  }
-
-  &.success {
-    background-color: var(--success);
-  }
-
-  &.warning {
-    background-color: var(--warning);
-  }
-
-  &.danger {
-    background-color: var(--danger);
-  }
-
-  &.info {
-    background-color: var(--info);
-  }
-
-  &.link {
-    background-color: var(--link);
-  }
-
-  &.white {
-    background-color: var(--white);
-  }
-
-  &.black {
-    background-color: var(--black);
-  }
-
-  &.text {
-    background-color: var(--text);
-  }
-
-  /* Линия для горизонтальной ориентации */
-  &.horizontal {
-    height: 2px;
-    bottom: -2px;
-    right: 0;
-    width: 100%;
-  }
-
-  /* Линия для вертикальной ориентации */
-  &.vertical {
-    width: 2px;
-    top: 0;
-    height: 100%;
-    right: -2px;
-  }
+    /* Линия для вертикальной ориентации */
+    &.vertical {
+        width: 2px;
+        top: 0;
+        height: 100%;
+        right: -2px;
+    }
 }
-

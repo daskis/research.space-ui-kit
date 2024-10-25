@@ -1,17 +1,18 @@
-import { DetailedHTMLProps, Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
-import { FieldError } from 'react-hook-form';
+import { Colors, FontFamily, Sizes, TextSizes } from '@helpers';
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
-export interface ITextareaProps extends Omit<
-    DetailedHTMLProps<InputHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>,
-    'size' | 'onChange'
-> {
-    label: string;
-    size?: 'small' | 'medium' | 'large';
-    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'white' | 'black' | 'text';
+export interface ITextareaProps
+    extends Omit<
+        DetailedHTMLProps<InputHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>,
+        'size' | 'onChange'
+    > {
+    size?: Sizes;
+    color?: Colors;
     borderRadius?: number;
-    error?: FieldError | undefined;
+    placeholder?: string;
+    textSize?: TextSizes;
     value: string;
-    fontFamily?: 'first' | 'second' | 'third';
-    onChange: Dispatch<SetStateAction<string>>;
+    fontFamily?: FontFamily;
+    onChange: (value: string) => void;
     maxRows?: number;
 }

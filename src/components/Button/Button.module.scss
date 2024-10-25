@@ -1,0 +1,39 @@
+@import '@styles/global';
+
+.button {
+    transition: 0.3s color ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+
+    &:disabled {
+        cursor: not-allowed;
+        filter: brightness(90%);
+    }
+
+    &:not(:disabled):hover {
+        filter: brightness(85%);
+    }
+
+    &:not(:disabled):active {
+        filter: brightness(75%);
+    }
+
+    @each $name, $value in $colors {
+        &.#{$name} {
+            background-color: $value;
+        }
+    }
+    @each $name, $value in $border-colors {
+        &.#{$name} {
+            border-color: $value;
+        }
+    }
+    @each $name, $value in $button-padding {
+        &.#{$name} {
+            padding: $value;
+        }
+    }
+}

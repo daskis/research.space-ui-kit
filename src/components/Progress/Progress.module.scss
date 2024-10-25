@@ -1,0 +1,73 @@
+@import '@styles/global';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+
+    @each $key, $value in $progress-size {
+        &.#{$key} {
+            & svg {
+                width: $value;
+                height: $value;
+            }
+        }
+    }
+
+    @each $key, $value in $colors {
+        &.#{$key} {
+            & .progressBar {
+                background-color: $value;
+            }
+            & .foregroundCircle {
+                stroke: $value;
+            }
+        }
+    }
+}
+
+.progressLine {
+    width: 100%;
+    height: 10px;
+    background-color: var(--gray);
+    border-radius: 5px;
+}
+
+.progressBar {
+    transition: 0.3s all ease;
+    height: 100%;
+    // background-color: var(--primary);
+    border-radius: 5px;
+}
+
+.progressCircle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; // Обеспечивает правильное позиционирование текста
+
+    svg {
+        display: block; // Обеспечивает корректное отображение SVG в центре
+    }
+
+    & + .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); // Центрирует текст по вертикали и горизонтали
+        z-index: 1;
+    }
+}
+
+.backgroundCircle {
+    stroke: var(--gray);
+}
+
+.foregroundCircle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}

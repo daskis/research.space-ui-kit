@@ -1,0 +1,24 @@
+@import "@styles/global";
+
+.heading {
+  @each $name, $value in $colors {
+    &.#{$name} {
+      color: $value;
+    }
+  }
+  @each $name, $value in $heading {
+    &.#{$name} {
+      font: $value;
+    }
+  }
+  @each $name, $value in $weight {
+    &.#{$name} {
+      font-weight: $value;
+    }
+  }
+  @each $name, $value in $fontFamily {
+    &.#{$name} {
+      font-family: $value;
+    }
+  }
+}

@@ -1,16 +1,14 @@
-import { DetailedHTMLProps, Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
-import { FieldError } from 'react-hook-form';
+import { Colors, FontFamily, Sizes, TextSizes } from '@helpers';
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
-export interface IInputProps extends Omit<
-    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    'size' | 'onChange'
-> {
-    label: string;
-    value: string;
-    size?: 'small' | 'medium' | 'large';
-    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'white' | 'black' | 'text';
+export interface IInputProps
+    extends Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'size' | 'onChange'> {
+    value?: string;
+    placeholder?: string;
     borderRadius?: number;
-    error?: FieldError | undefined;
-    fontFamily?: 'first' | 'second' | 'third';
-    onChange: Dispatch<SetStateAction<string>>;
+    onChange?: (value: string) => void;
+    size?: Sizes;
+    textSize?: TextSizes;
+    color?: Colors;
+    fontFamily?: FontFamily;
 }

@@ -1,28 +1,29 @@
-import {defineConfig} from "vite";
-import dts from "vite-plugin-dts";
-import {extname, relative, resolve} from "path";
-import {fileURLToPath} from "node:url";
-import {glob} from "glob";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import { extname, relative, resolve } from 'path';
+import { fileURLToPath } from 'node:url';
+import { glob } from 'glob';
+import react from '@vitejs/plugin-react';
+import * as path from 'node:path';
 
 const entries = Object.fromEntries(
     glob
-        .sync("src/components/**/*.{ts,tsx}")
+        .sync('src/components/**/*.{ts,tsx}')
         .map(file => [
-            relative("src/components", file.slice(0, file.length - extname(file).length)),
-            fileURLToPath(new URL(file, import.meta.url))
-        ])
+            relative('src/components', file.slice(0, file.length - extname(file).length)),
+            fileURLToPath(new URL(file, import.meta.url)),
+        ]),
 );
 
 const outputBase = {
     globals: {
-        react: "React",
-        "react-dom": "ReactDOM",
-        "react/jsx-runtime": "jsxRuntime",
-        "classnames/bind": "cn",
-        classnames: "classnames",
-        "react-paginate": "react-paginate"
-    }
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'react/jsx-runtime': 'jsxRuntime',
+        'classnames/bind': 'cn',
+        classnames: 'classnames',
+        'react-paginate': 'react-paginate',
+    },
 };
 
 // https://vitejs.dev/config/
@@ -30,49 +31,49 @@ export default defineConfig({
     plugins: [
         react(),
         dts({
-            insertTypesEntry: true
-        })
+            insertTypesEntry: true,
+        }),
     ],
     resolve: {
         alias: {
-            '@styles': '/src/styles',
-            '@providers': '/src/providers',
-            '@components': '/src/components',
-            '@helpers': '/src/helpers',
-            '@hooks': '/src/hooks',
+            '@styles': path.resolve(__dirname, 'src/styles'),
+            '@components': path.resolve(__dirname, 'src/components'),
+            '@hooks': path.resolve(__dirname, 'src/hooks'),
+            '@helpers': path.resolve(__dirname, 'src/helpers'),
+            '@providers': path.resolve(__dirname, 'src/providers'),
         },
     },
     define: {
-        "process.env": {}
+        'process.env': {},
     },
     build: {
         emptyOutDir: true,
-        outDir: "./dist",
+        outDir: './dist',
         lib: {
-            name: "uikit",
-            entry: resolve(__dirname, "src/components/index.ts")
+            name: 'uikit',
+            entry: resolve(__dirname, 'src/components/index.ts'),
         },
         ssr: true,
         copyPublicDir: false,
         // https://vitejs.dev/config/build-options.html#build-rollupoptions
         rollupOptions: {
-            external: ["react", "react-dom", "styled-components", "classnames"],
+            external: ['react', 'react-dom', 'styled-components', 'classnames'],
             input: entries,
             output: [
                 {
                     ...outputBase,
-                    exports: "named",
-                    format: "cjs",
-                    esModule: true
+                    exports: 'named',
+                    format: 'cjs',
+                    esModule: true,
                 },
                 {
                     ...outputBase,
-                    exports: "named",
-                    format: "esm",
-                    interop: "esModule"
-                }
+                    exports: 'named',
+                    format: 'esm',
+                    interop: 'esModule',
+                },
             ],
-            plugins: []
-        }
-    }
+            plugins: [],
+        },
+    },
 });

@@ -1,0 +1,28 @@
+@import "@styles/global";
+
+.a {
+  transition: 0.3s all ease;
+  @each $name, $value in $colors {
+    &.#{$name} {
+      color: $value;
+      &:hover {
+        filter: brightness(85%);
+      }
+    }
+  }
+  @each $name, $value in $paragraph {
+    &.#{$name} {
+      font: $value;
+    }
+  }
+  @each $name, $value in $weight {
+    &.#{$name} {
+      font-weight: $value;
+    }
+  }
+  @each $name, $value in $fontFamily {
+    &.#{$name} {
+      font-family: $value;
+    }
+  }
+}

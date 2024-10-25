@@ -1,3 +1,2 @@
-export * from "./Radio.tsx"
-export * from "./RadioButton"
-export * from "./RadioGroup"
+export * from './Radio';
+export * from './Radio.props.ts';

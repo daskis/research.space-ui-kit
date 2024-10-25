@@ -1,3 +1,2 @@
-export * from "./Button.tsx"
-export * from "./FilledButton"
-export * from "./DashedButton"
+export * from './Button.tsx';
+export * from './Button.props.ts';

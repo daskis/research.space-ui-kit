@@ -1,14 +1,16 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { Option } from '../Option';
+import { Colors, FontFamily, Sizes } from '@helpers';
 
-export interface ISelectOneProps extends Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, 'onChange'> {
+export interface ISelectOneProps
+    extends Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, 'onChange'> {
     selected: Option | null;
     options: Option[];
     placeholder: string;
     onChange: (selected: Option) => void;
     onClose?: () => void;
-    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'white' | 'black' | 'text';
-    fontFamily?: 'first' | 'second' | 'third';
-    size?: 'small' | 'medium' | 'large';
+    color?: Colors;
+    fontFamily?: FontFamily;
+    size?: Sizes;
     borderRadius?: number;
 }

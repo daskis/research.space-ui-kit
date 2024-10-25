@@ -1,127 +1,68 @@
+@import '@styles/global';
+
 .pagination {
-  display: flex;
-  align-items: center;
-
-
-  & .arrow {
-    background-color: inherit;
-    cursor: pointer;
-
-
-    & svg {
-      fill: var(--text);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-  }
-
-  .pageList {
     display: flex;
     align-items: center;
 
-    .pageItem {
-      cursor: pointer;
-      transition: background-color 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        background-color: color-mix(in srgb, var(--gray) 20%, transparent);
-      }
-
-      &.small {
-        padding: 4px;
-        width: var(--pagination-size-small);
-        height: var(--pagination-size-small);
-      }
-
-      &.medium {
-        padding: 2px;
-        width: var(--pagination-size-medium);
-        height: var(--pagination-size-medium);
-      }
-
-      &.large {
-        width: var(--pagination-size-large);
-        height: var(--pagination-size-large);
-      }
-
-      &.active {
-        &.primary {
-          border: 1px solid var(--primary);
-        }
-
-        &.secondary {
-          border: 1px solid var(--secondary);
-        }
-
-        &.success {
-          border: 1px solid var(--success);
-        }
-
-        &.warning {
-          border: 1px solid var(--warning);
-        }
-
-        &.danger {
-          border: 1px solid var(--danger);
-        }
-
-        &.info {
-          border: 1px solid var(--info);
-        }
-
-        &.link {
-          border: 1px solid var(--link);
-        }
-
-        &.white {
-          border: 1px solid var(--white);
-        }
-
-        &.black {
-          border: 1px solid var(--black);
-        }
-
-        &.text {
-          border: 1px solid var(--text);
-        }
-      }
-
-      &.disabled {
-        cursor: not-allowed;
-        pointer-events: none;
-        opacity: 0.5;
-      }
-    }
-  }
-
-  &.small {
     & .arrow {
-      padding: 4px;
-      width: var(--pagination-size-small);
-      height: var(--pagination-size-small);
-    }
-  }
+        background-color: inherit;
+        cursor: pointer;
 
-  &.medium {
-    & .arrow {
-      padding: 4px;
-      width: var(--pagination-size-medium);
-      height: var(--pagination-size-medium);
-    }
-  }
+        & svg {
+            fill: var(--text);
+        }
 
-  &.large {
-    & .arrow {
-      padding: 4px;
-      width: var(--pagination-size-large);
-      height: var(--pagination-size-large);
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     }
-  }
+
+    .pageList {
+        display: flex;
+        align-items: center;
+
+        .pageItem {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background-color: color-mix(in srgb, var(--gray) 20%, transparent);
+            }
+            @each $key, $value in $pagitation-size {
+                &.#{$key} {
+                    padding: 2px;
+                    width: $value;
+                    height: $value;
+                }
+            }
+
+            &.active {
+                @each $key, $value in $colors {
+                    &.#{$key} {
+                        background-color: $value;
+                    }
+                }
+            }
+
+            &.disabled {
+                cursor: not-allowed;
+                pointer-events: none;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    @each $key, $value in $pagitation-size {
+        &.#{$key} {
+            & .arrow {
+                padding: 4px;
+                width: $value;
+                height: $value;
+            }
+        }
+    }
 }

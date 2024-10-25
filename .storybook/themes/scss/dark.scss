@@ -1,74 +1,105 @@
 .dark {
-  --primary: #1677ff;
-  --secondary: #722ed1;
-  --success: #52c41a;
-  --warning: #faad14;
-  --danger: #f5222d;
-  --info: #0958d9;
-  --link: #4096ff;
-  --white: #ffffff;
-  --black: #000000;
-  --text: #ffffff;
-  --text-invert: #000000;
-  --gray: #595959;
-  --bg: #262626;
-  --bg-dark: #1f1f1f;
+    --primary: #1677ff;
+    --secondary: #722ed1;
+    --success: #52c41a;
+    --warning: #faad14;
+    --danger: #f5222d;
+    --info: #0958d9;
+    --link: #4096ff;
+    --white: #ffffff;
+    --black: #000000;
+    --text: #ffffff;
+    --text-invert: #000000;
+    --gray: #595959;
+    --bg: #262626;
+    --bg-dark: #1f1f1f;
 
-
-  .sbdocs {
-    background-color: var(--bg) !important;
-
-
-    &-title {
-      color: var(--text) !important;
-    }
-
-    & .sb-bar {
-      background-color: var(--bg-dark);
-    }
-
-    & .css-11xgcgt {
-      background: var(--bg-dark) !important;
-
-      & button {
-        background: var(--bg-dark) !important;
-        color: var(--text);
-      }
-    }
-
-    & .docblock-argstable {
-      background-color: #262626 !important;
-
-      & .docblock-argstable-head {
-        & span {
-          color: var(--text) !important;
+    .sbdocs {
+        background-color: var(--bg) !important;
+        overflow-y: scroll;
+        &-title {
+            color: var(--text) !important;
         }
-      }
 
-      & .docblock-argstable-body {
-        -webkit-filter: drop-shadow(0px 1px 3px rgba(255, 255, 255, 0.10)) !important;
-        filter: drop-shadow(0px 1px 3px rgba(100, 100, 100, 0.10)) !important;
+        & .sb-bar {
+            background-color: var(--bg-dark);
+        }
 
-        & td {
-          background-color: var(--bg) !important;
-          border-color: var(--gray) !important;
-
-          & span {
-            color: var(--text) !important;
-          }
-
-          & .css-o1d7ko {
-            background-color: var(--bg-dark) !important;
-            border: none;
-            color: var(--text) !important;
-          }
-
-          & .css-14o1cbe {
+        & .css-11xgcgt {
             background: var(--bg-dark) !important;
-            color: var(--text) !important;
-          }
+            & .css-1fdphfk {
+                color: var(--text) !important;
+                background: var(--bg-dark) !important;
+            }
         }
-      }
+        & .css-177r6r9 {
+            background-color: var(--gray) !important;
+            & span {
+                background-color: var(--bg) !important;
+                box-shadow: var(--bg) 0 0 2px !important;
+            }
+            & span:last-child {
+                background-color: var(--gray) !important;
+            }
+            & input {
+                &:checked {
+                    & ~ span:first-of-type {
+                        background-color: var(--gray) !important;
+                        box-shadow: var(--bg) 0 0 2px;
+                    }
+                    & ~ span:last-of-type {
+                        background-color: var(--bg) !important;
+                        box-shadow: var(--bg) 0 0 2px;
+                    }
+                }
+            }
+        }
+
+        & .css-7mc623 {
+            background-color: var(--bg-dark);
+            color: var(--text);
+            &::placeholder {
+                color: var(--gray);
+            }
+        }
+        & .css-r7fl1p {
+            background: var(--bg-dark) !important;
+            color: var(--text);
+        }
+
+        & .docblock-argstable {
+            background-color: #262626 !important;
+
+            & .docblock-argstable-head {
+                & span {
+                    color: var(--text) !important;
+                }
+            }
+
+            & .docblock-argstable-body {
+                -webkit-filter: drop-shadow(0px 1px 3px rgba(255, 255, 255, 0.1)) !important;
+                filter: drop-shadow(0px 1px 3px rgba(100, 100, 100, 0.1)) !important;
+
+                & td {
+                    background-color: var(--bg) !important;
+                    border-color: var(--gray) !important;
+
+                    & span {
+                        color: var(--text) !important;
+                    }
+
+                    & .css-o1d7ko {
+                        background-color: var(--bg-dark) !important;
+                        border: none;
+                        color: var(--text) !important;
+                    }
+
+                    & .css-14o1cbe {
+                        background: var(--bg-dark) !important;
+                        color: var(--text) !important;
+                    }
+                }
+            }
+        }
     }
-  }
 }

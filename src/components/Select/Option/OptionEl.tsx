@@ -3,26 +3,27 @@ import { CSSProperties, type MouseEventHandler, useEffect, useRef } from 'react'
 import { OptionElProps } from './OptionEl.props.ts';
 import { Option as OptionItem } from './OptionEl.props.ts';
 import { classNames } from '@helpers';
-import { Text } from '@components';
+import { Paragraph } from '@components';
 
-
-export const OptionEl = (
-    {
-        option,
-        fontFamily = 'first',
-        size,
-        color,
-        active = false,
-        borderRadius,
-        onClick,
-    }: OptionElProps) => {
+export const OptionEl = ({
+    option,
+    fontFamily = 'first',
+    size,
+    color,
+    active = false,
+    borderRadius,
+    onClick,
+}: OptionElProps) => {
     const optionRef = useRef<HTMLLIElement>(null);
 
-    const handleClick = (
-        clickedValue: OptionItem,
-    ): MouseEventHandler<HTMLLIElement> => () => {
-        onClick(clickedValue);
-    };
+    useEffect(() => {
+        console.log(active);
+    }, [active]);
+    const handleClick =
+        (clickedValue: OptionItem): MouseEventHandler<HTMLLIElement> =>
+        () => {
+            onClick(clickedValue);
+        };
 
     useEffect(() => {
         const optionCurrent = optionRef.current;
@@ -44,7 +45,7 @@ export const OptionEl = (
     };
     const textSize = (): 'h3' | 'h2' | 'h1' | 'h4' | 'h5' | 'h6' => {
         switch (size) {
-            case'small':
+            case 'small':
                 return 'h3';
             case 'medium':
                 return 'h2';
@@ -56,41 +57,29 @@ export const OptionEl = (
     };
     return (
         <li
-            className={classNames(cls.option, {
-                [cls.active]: active,
+            className={classNames(
+                cls.option,
+                {
+                    [cls.active]: active,
 
-                [cls.small]: size === 'small',
-                [cls.medium]: size === 'medium',
-                [cls.large]: size === 'large',
+                    [cls[size]]: size,
+                    [cls[color]]: color,
 
-                [cls.primary]: color === 'primary',
-                [cls.secondary]: color === 'secondary',
-                [cls.success]: color === 'success',
-                [cls.warning]: color === 'warning',
-                [cls.danger]: color === 'danger',
-                [cls.info]: color === 'info',
-                [cls.link]: color === 'link',
-                [cls.white]: color === 'white',
-                [cls.black]: color === 'black',
-                [cls.text]: color === 'text',
-
-                [cls.fontFirst]: fontFamily === 'first',
-                [cls.fontSecond]: fontFamily === 'second',
-                [cls.fontThird]: fontFamily === 'third',
-            }, [])}
+                    [cls.fontFirst]: fontFamily === 'first',
+                    [cls.fontSecond]: fontFamily === 'second',
+                    [cls.fontThird]: fontFamily === 'third',
+                },
+                [],
+            )}
             value={option.value}
             onClick={handleClick(option)}
             tabIndex={0}
             ref={optionRef}
             style={style}
         >
-            <Text.Paragraph
-                size={textSize()}
-                color="text"
-                fontFamily={fontFamily}
-            >
+            <Paragraph size={textSize()} color="text" fontFamily={fontFamily}>
                 {option.label}
-            </Text.Paragraph>
+            </Paragraph>
         </li>
     );
 };

@@ -2,21 +2,20 @@ import { CSSProperties, useMemo } from 'react';
 import cls from './Pagination.module.scss';
 import { classNames } from '@helpers';
 import { IPaginationProps } from './Pagination.props.ts';
-import { Text } from '../Text';
+import { Paragraph } from '@components';
 
-export const Pagination = (
-    {
-        total,
-        current,
-        onChange,
-        gap = 5,
-        color = 'primary',
-        borderRadius = 5,
-        size = 'medium',
-        displayCount = 5,
-        disabled = false,
-        className,
-    }: IPaginationProps) => {
+export const Pagination = ({
+    total,
+    current,
+    onChange,
+    gap = 5,
+    color = 'primary',
+    borderRadius = 5,
+    size = 'medium',
+    displayCount = 5,
+    disabled = false,
+    className,
+}: IPaginationProps) => {
     const totalPages = total;
 
     const handleClick = (page: number) => {
@@ -29,13 +28,19 @@ export const Pagination = (
         return size === 'small' ? 'h4' : size === 'large' ? 'h2' : 'h3';
     }, [size]);
 
-    const itemStyle: CSSProperties = useMemo(() => ({
-        borderRadius: `${borderRadius}px`,
-    }), [borderRadius]);
+    const itemStyle: CSSProperties = useMemo(
+        () => ({
+            borderRadius: `${borderRadius}px`,
+        }),
+        [borderRadius],
+    );
 
-    const listStyle: CSSProperties = useMemo(() => ({
-        gap: `${gap}px`,
-    }), [gap]);
+    const listStyle: CSSProperties = useMemo(
+        () => ({
+            gap: `${gap}px`,
+        }),
+        [gap],
+    );
 
     const renderPaginationItems = useMemo(() => {
         const pages = [];
@@ -59,23 +64,24 @@ export const Pagination = (
                     key={1}
                     style={itemStyle}
                     tabIndex={0} // Add tabIndex for keyboard navigation
-                    className={classNames(cls.pageItem, {
-                        [cls.active]: current === 1,
-                        [cls.disabled]: disabled,
-                        [cls.small]: size === 'small',
-                        [cls.medium]: size === 'medium',
-                        [cls.large]: size === 'large',
-                        [cls[color]]: color,
-                    }, [])}
+                    className={classNames(
+                        cls.pageItem,
+                        {
+                            [cls.active]: current === 1,
+                            [cls.disabled]: disabled,
+                            [cls.small]: size === 'small',
+                            [cls.medium]: size === 'medium',
+                            [cls.large]: size === 'large',
+                            [cls[color]]: color,
+                        },
+                        [],
+                    )}
                     onClick={() => handleClick(1)}
                     onKeyDown={(e) => e.key === 'Enter' && handleClick(1)} // Handle keyboard navigation
                 >
-                    <Text.Paragraph
-                        color={current === 1 ? color : 'text'}
-                        size={textSize}
-                    >
+                    <Paragraph color="text" size={textSize}>
                         1
-                    </Text.Paragraph>
+                    </Paragraph>
                 </li>,
             );
         }
@@ -84,19 +90,24 @@ export const Pagination = (
         if (startPage > 2) {
             pages.push(
                 <li
+                    style={itemStyle}
                     tabIndex={0} // Add tabIndex for keyboard navigation
-                    className={classNames(cls.pageItem, {
-                        [cls.disabled]: disabled,
-                        [cls.small]: size === 'small',
-                        [cls.medium]: size === 'medium',
-                        [cls.large]: size === 'large',
-                        [cls[color]]: color,
-                    }, [])}
+                    className={classNames(
+                        cls.pageItem,
+                        {
+                            [cls.disabled]: disabled,
+                            [cls.small]: size === 'small',
+                            [cls.medium]: size === 'medium',
+                            [cls.large]: size === 'large',
+                            [cls[color]]: color,
+                        },
+                        [],
+                    )}
                     key="prev-ellipsis"
                     onClick={() => handleClick(startPage - 1)}
                     onKeyDown={(e) => e.key === 'Enter' && handleClick(startPage - 1)} // Handle keyboard navigation
                 >
-                    <Text.Paragraph size={textSize}>...</Text.Paragraph>
+                    <Paragraph size={textSize}>...</Paragraph>
                 </li>,
             );
         }
@@ -108,23 +119,24 @@ export const Pagination = (
                     style={itemStyle}
                     key={i}
                     tabIndex={0} // Add tabIndex for keyboard navigation
-                    className={classNames(cls.pageItem, {
-                        [cls.active]: i === current,
-                        [cls.disabled]: disabled,
-                        [cls.small]: size === 'small',
-                        [cls.medium]: size === 'medium',
-                        [cls.large]: size === 'large',
-                        [cls[color]]: color,
-                    }, [])}
+                    className={classNames(
+                        cls.pageItem,
+                        {
+                            [cls.active]: i === current,
+                            [cls.disabled]: disabled,
+                            [cls.small]: size === 'small',
+                            [cls.medium]: size === 'medium',
+                            [cls.large]: size === 'large',
+                            [cls[color]]: color,
+                        },
+                        [],
+                    )}
                     onClick={() => handleClick(i)}
                     onKeyDown={(e) => e.key === 'Enter' && handleClick(i)} // Handle keyboard navigation
                 >
-                    <Text.Paragraph
-                        color={current === i ? color : 'text'}
-                        size={textSize}
-                    >
+                    <Paragraph color="text" size={textSize}>
                         {i}
-                    </Text.Paragraph>
+                    </Paragraph>
                 </li>,
             );
         }
@@ -135,18 +147,22 @@ export const Pagination = (
                 <li
                     style={itemStyle}
                     tabIndex={0} // Add tabIndex for keyboard navigation
-                    className={classNames(cls.pageItem, {
-                        [cls.disabled]: disabled,
-                        [cls.small]: size === 'small',
-                        [cls.medium]: size === 'medium',
-                        [cls.large]: size === 'large',
-                        [cls[color]]: color,
-                    }, [])}
+                    className={classNames(
+                        cls.pageItem,
+                        {
+                            [cls.disabled]: disabled,
+                            [cls.small]: size === 'small',
+                            [cls.medium]: size === 'medium',
+                            [cls.large]: size === 'large',
+                            [cls[color]]: color,
+                        },
+                        [],
+                    )}
                     key="next-ellipsis"
                     onClick={() => handleClick(endPage + 1)}
                     onKeyDown={(e) => e.key === 'Enter' && handleClick(endPage + 1)} // Handle keyboard navigation
                 >
-                    <Text.Paragraph size={textSize}>...</Text.Paragraph>
+                    <Paragraph size={textSize}>...</Paragraph>
                 </li>,
             );
         }
@@ -158,23 +174,24 @@ export const Pagination = (
                     style={itemStyle}
                     key={totalPages}
                     tabIndex={0} // Add tabIndex for keyboard navigation
-                    className={classNames(cls.pageItem, {
-                        [cls.active]: current === totalPages,
-                        [cls.disabled]: disabled,
-                        [cls.small]: size === 'small',
-                        [cls.medium]: size === 'medium',
-                        [cls.large]: size === 'large',
-                        [cls[color]]: color,
-                    }, [])}
+                    className={classNames(
+                        cls.pageItem,
+                        {
+                            [cls.active]: current === totalPages,
+                            [cls.disabled]: disabled,
+                            [cls.small]: size === 'small',
+                            [cls.medium]: size === 'medium',
+                            [cls.large]: size === 'large',
+                            [cls[color]]: color,
+                        },
+                        [],
+                    )}
                     onClick={() => handleClick(totalPages)}
                     onKeyDown={(e) => e.key === 'Enter' && handleClick(totalPages)} // Handle keyboard navigation
                 >
-                    <Text.Paragraph
-                        color={current === totalPages ? color : 'text'}
-                        size={textSize}
-                    >
+                    <Paragraph color="text" size={textSize}>
                         {totalPages}
-                    </Text.Paragraph>
+                    </Paragraph>
                 </li>,
             );
         }
@@ -185,13 +202,17 @@ export const Pagination = (
     return (
         <div
             style={listStyle}
-            className={classNames(cls.pagination, {
-                [cls.disabled]: disabled,
-                [cls.small]: size === 'small',
-                [cls.medium]: size === 'medium',
-                [cls.large]: size === 'large',
-                [cls[color]]: color,
-            }, [className])}
+            className={classNames(
+                cls.pagination,
+                {
+                    [cls.disabled]: disabled,
+                    [cls.small]: size === 'small',
+                    [cls.medium]: size === 'medium',
+                    [cls.large]: size === 'large',
+                    [cls[color]]: color,
+                },
+                [className],
+            )}
         >
             <button
                 className={classNames(cls.arrow, {}, [cls.prev])}

@@ -1,71 +1,47 @@
+@import '@styles/global';
+
 .wrapper {
-  position: relative;
+    position: relative;
+    display: inline-block;
 
-  & .badge {
-    position: absolute;
-    border-radius: 50%;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--bg);
-
-    &.small {
-      width: var(--badge-size-small);
-      height: var(--badge-size-small);
-      top: -8px;
-      right: -8px;
+    & .body {
+        display: inline-block;
     }
 
-    &.medium {
-      width: var(--badge-size-medium);
-      height: var(--badge-size-medium);
-      top: -10px;
-      right: -10px;
-    }
+    & .badge {
+        position: absolute;
+        border-radius: 50%;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
 
-    &.large {
-      width: var(--badge-size-large);
-      height: var(--badge-size-large);
-      top: -12px;
-      right: -12px;
-    }
+        &.small {
+            top: -8px;
+            right: -8px;
+        }
 
-    &.primary {
-      background-color: var(--primary);
-    }
+        &.medium {
+            top: -10px;
+            right: -10px;
+        }
 
-    &.secondary {
-      background-color: var(--secondary);
-    }
+        &.large {
+            top: -12px;
+            right: -12px;
+        }
 
-    &.success {
-      background-color: var(--success);
+        @each $key, $value in $badge-size {
+            &.#{$key} {
+                width: $value;
+                height: $value;
+            }
+        }
+        @each $key, $value in $colors {
+            &.#{$key} {
+                background-color: $value;
+                border-color: $value;
+            }
+        }
     }
-
-    &.warning {
-      background-color: var(--warning);
-      border-color: var(--warning);
-    }
-
-    &.danger {
-      background-color: var(--danger);
-    }
-
-    &.info {
-      background-color: var(--info);
-    }
-
-    &.link {
-      background-color: var(--link);
-    }
-
-    &.white {
-      background-color: var(--white);
-    }
-
-    &.black {
-      background-color: var(--black);
-    }
-  }
 }

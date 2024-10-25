@@ -1,2 +1,2 @@
-export * from "./Input.tsx"
-export * from "./Input.props.ts"
+export * from './Input.tsx';
+export * from './Input.props.ts';

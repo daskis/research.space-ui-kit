@@ -1,2 +1,17 @@
-@import "themes/scss/dark";
-@import "themes/scss/light";
+@import 'themes/scss/dark';
+@import 'themes/scss/light';
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#storybook-docs {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}

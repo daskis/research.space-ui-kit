@@ -1,5 +1,5 @@
+import { Colors, Sizes } from '@helpers';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
-
 
 export interface ITabProps {
     label: string;
@@ -7,10 +7,10 @@ export interface ITabProps {
 }
 
 export interface ITabsProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    size?: 'small' | 'medium' | 'large';
+    size?: Sizes;
     defaultIndex?: number;
     tabs: ITabProps[];
-    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'white' | 'black' | 'text';
+    color?: Colors;
     orientation?: 'vertical' | 'horizontal';
     justifyContent?: 'start' | 'center' | 'end';
     gap?: number;

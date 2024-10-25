@@ -11,6 +11,6 @@ export const setToastFunction = (fn: (message: string, type?: ToastType) => void
 export const toast = {
     info: (message: string) => addToastFunction(message, 'info'),
     success: (message: string) => addToastFunction(message, 'success'),
-    error: (message: string) => addToastFunction(message, 'error'),
+    danger: (message: string) => addToastFunction(message, 'danger'),
     warning: (message: string) => addToastFunction(message, 'warning'),
 };

@@ -3,22 +3,21 @@ import { useState, useEffect, useRef, CSSProperties, MouseEventHandler } from 'r
 import { Option, OptionEl } from '../Option';
 import { ISelectManyProps } from './SelectMany.props.ts';
 import { classNames } from '@helpers';
-import { Text } from '@components';
+import { Paragraph } from '@components';
 
-export const SelectMany = (
-    {
-        options,
-        placeholder,
-        selected = [],
-        onChange,
-        size = 'medium',
-        fontFamily = 'first',
-        borderRadius = 5,
-        color = 'primary',
-        onClose,
-        className,
-        ...props
-    }: ISelectManyProps) => {
+export const SelectMany = ({
+    options,
+    placeholder,
+    selected = [],
+    onChange,
+    size = 'medium',
+    fontFamily = 'first',
+    borderRadius = 5,
+    color = 'primary',
+    onClose,
+    className,
+    ...props
+}: ISelectManyProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const rootRef = useRef<HTMLDivElement>(null);
     const placeholderRef = useRef<HTMLDivElement>(null);
@@ -55,8 +54,8 @@ export const SelectMany = (
     }, []);
 
     const handleOptionClick = (option: Option) => {
-        const newSelected = selected?.some(sel => sel.value === option.value)
-            ? selected?.filter(sel => sel.value !== option.value) // Remove if already selected
+        const newSelected = selected?.some((sel) => sel.value === option.value)
+            ? selected?.filter((sel) => sel.value !== option.value) // Remove if already selected
             : [...(selected ?? []), option]; // Add if not selected
 
         onChange?.(newSelected);
@@ -65,7 +64,7 @@ export const SelectMany = (
     const handleIconClick = (option: Option, event: React.MouseEvent) => {
         event.stopPropagation(); // Prevent click from bubbling up
         if (selected) {
-            const newSelected = selected.filter(sel => sel.value !== option.value);
+            const newSelected = selected.filter((sel) => sel.value !== option.value);
             onChange?.(newSelected);
         }
     };
@@ -95,86 +94,60 @@ export const SelectMany = (
         <div {...props} className={cls.wrapper} ref={rootRef}>
             <div
                 style={style}
-                className={classNames(cls.placeholder, {
-                    [cls.active]: isOpen,
-                    [cls.primary]: color === 'primary',
-                    [cls.secondary]: color === 'secondary',
-                    [cls.success]: color === 'success',
-                    [cls.warning]: color === 'warning',
-                    [cls.danger]: color === 'danger',
-                    [cls.info]: color === 'info',
-                    [cls.link]: color === 'link',
-                    [cls.white]: color === 'white',
-                    [cls.black]: color === 'black',
-                    [cls.text]: color === 'text',
-                    [cls.small]: size === 'small',
-                    [cls.medium]: size === 'medium',
-                    [cls.large]: size === 'large',
-                }, [className])}
+                className={classNames(
+                    cls.placeholder,
+                    {
+                        [cls.active]: isOpen,
+                        [cls[color]]: color,
+                        [cls[size]]: size,
+                    },
+                    [className],
+                )}
                 onClick={handlePlaceholderClick}
                 role="button"
                 tabIndex={0}
                 ref={placeholderRef}
             >
-                {!selected?.length &&
-                    <Text.Paragraph
-                        size={textSize()}
-                        color="text"
-                        fontFamily={fontFamily}
-                    >
+                {!selected?.length && (
+                    <Paragraph size={textSize()} color="text" fontFamily={fontFamily}>
                         {placeholder}
-                    </Text.Paragraph>
-                }
+                    </Paragraph>
+                )}
 
-                {selected && selected?.length > 0
-                    &&
+                {selected && selected?.length > 0 && (
                     <ul className={cls.selectedList}>
-                        {selected?.map(opt => (
+                        {selected?.map((opt) => (
                             <li key={opt.value} style={style} className={cls.selectedListItem}>
-                                <Text.Paragraph
-                                    size={textSize()}
-                                    color="text"
-                                    fontFamily={fontFamily}
-                                >
+                                <Paragraph size={textSize()} color="text" fontFamily={fontFamily}>
                                     {opt.label}
-                                </Text.Paragraph>
+                                </Paragraph>
                                 <span className={cls.icon} onClick={(event) => handleIconClick(opt, event)}>
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <path
-                                        d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
-                                </svg>
-                            </span>
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+                                    </svg>
+                                </span>
                             </li>
                         ))}
                     </ul>
-                }
+                )}
 
                 <div className={classNames(cls.arrow, { [cls.active]: isOpen }, [])}>
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path
-                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+                        <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
                     </svg>
                 </div>
             </div>
             <ul
                 style={style}
-                className={classNames(cls.select, {
-                    [cls.small]: size === 'small',
-                    [cls.medium]: size === 'medium',
-                    [cls.large]: size === 'large',
-
-                    [cls.primary]: color === 'primary',
-                    [cls.secondary]: color === 'secondary',
-                    [cls.success]: color === 'success',
-                    [cls.warning]: color === 'warning',
-                    [cls.danger]: color === 'danger',
-                    [cls.info]: color === 'info',
-                    [cls.link]: color === 'link',
-                    [cls.white]: color === 'white',
-                    [cls.black]: color === 'black',
-                    [cls.text]: color === 'text',
-                    [cls.visible]: isOpen, // Add visible class when dropdown is open
-                }, [])}
+                className={classNames(
+                    cls.select,
+                    {
+                        [cls[color]]: color,
+                        [cls[size]]: size,
+                        [cls.visible]: isOpen,
+                    },
+                    [],
+                )}
                 data-testid="selectDropdown"
             >
                 {options.map((option) => (
@@ -182,7 +155,7 @@ export const SelectMany = (
                         {...option}
                         size={size}
                         color={color}
-                        active={selected?.some(sel => sel.value === option.value)}
+                        active={selected?.some((sel) => sel.value === option.value)}
                         borderRadius={borderRadius}
                         key={option.value}
                         option={option}

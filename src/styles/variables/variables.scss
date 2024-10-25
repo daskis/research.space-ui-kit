@@ -1,199 +1,237 @@
 :root {
-  /* Font Family */
-  --fontFamilyFirst: Montserrat, sans-serif;
-  --fontFamilySecond: Montserrat, sans-serif;
-  --fontFamilyThird: Montserrat, sans-serif;
+    /* Font Family */
+    --fontFamilyFirst: Montserrat, sans-serif;
+    --fontFamilySecond: Montserrat, sans-serif;
+    --fontFamilyThird: Montserrat, sans-serif;
 
-  /* Font Weight */
-  --fontBlack: 900;
-  --fontBold: 700;
-  --fontMedium: 500;
-  --fontRegular: 400;
-  --fontLight: 300;
-  --fontThin: 100;
+    /* Font Weight */
+    --fontThin: 100;
+    --fontExtraLight: 200;
+    --fontLight: 300;
+    --fontRegular: 400;
+    --fontMedium: 500;
+    --fontSemiBold: 600;
+    --fontBold: 700;
+    --fontExtraBold: 800;
+    --fontBlack: 900;
 
-  /* Heading Sizes */
-  --heading-size-1: 3rem; /* 48px */
-  --heading-size-2: 2.5rem; /* 40px */
-  --heading-size-3: 2.25rem; /* 36px */
-  --heading-size-4: 2rem; /* 32px */
-  --heading-size-5: 1.75rem; /* 28px */
-  --heading-size-6: 1.5rem; /* 24px */
+    /* Heading Sizes */
+    --heading-size-1: 3rem; /* 48px */
+    --heading-size-2: 2.5rem; /* 40px */
+    --heading-size-3: 2.25rem; /* 36px */
+    --heading-size-4: 2rem; /* 32px */
+    --heading-size-5: 1.75rem; /* 28px */
+    --heading-size-6: 1.5rem; /* 24px */
 
-  /* Heading Lines */
-  --heading-line-1: 1.2;
-  --heading-line-2: 1.2;
-  --heading-line-3: 1.2;
-  --heading-line-4: 1.2;
-  --heading-line-5: 1.2;
-  --heading-line-6: 1.2;
+    /* Heading Lines */
+    --heading-line-1: 1.2;
+    --heading-line-2: 1.2;
+    --heading-line-3: 1.2;
+    --heading-line-4: 1.2;
+    --heading-line-5: 1.2;
+    --heading-line-6: 1.2;
 
-  /* Paragraph Sizes */
-  --paragraph-size-1: 1.25rem; /* 20px */
-  --paragraph-size-2: 1.125rem; /* 18px */
-  --paragraph-size-3: 1rem; /* 16px */
-  --paragraph-size-4: 0.875rem; /* 14px */
-  --paragraph-size-5: 0.75rem; /* 12px */
-  --paragraph-size-6: 0.625rem; /* 10px */
+    /* Paragraph Sizes */
+    --paragraph-size-1: 1.25rem; /* 20px */
+    --paragraph-size-2: 1.125rem; /* 18px */
+    --paragraph-size-3: 1rem; /* 16px */
+    --paragraph-size-4: 0.875rem; /* 14px */
+    --paragraph-size-5: 0.75rem; /* 12px */
+    --paragraph-size-6: 0.625rem; /* 10px */
 
-  /* Paragraph Lines */
-  --paragraph-line-1: 1.5;
-  --paragraph-line-2: 1.5;
-  --paragraph-line-3: 1.5;
-  --paragraph-line-4: 1.5;
-  --paragraph-line-5: 1.5;
-  --paragraph-line-6: 1.5;
+    /* Paragraph Lines */
+    --paragraph-line-1: 1.5;
+    --paragraph-line-2: 1.5;
+    --paragraph-line-3: 1.5;
+    --paragraph-line-4: 1.5;
+    --paragraph-line-5: 1.5;
+    --paragraph-line-6: 1.5;
 
+    /* RadioButton Sizes */
+    --radio-size-small: 12px;
+    --radio-size-medium: 16px;
+    --radio-size-large: 20px;
 
-  /* RadioButton Sizes */
-  --radio-small-size: 12px;
-  --radio-medium-size: 16px;
-  --radio-large-size: 20px;
+    /* CheckboxButton Sizes */
+    --checkbox-size-small: 12px;
+    --checkbox-size-medium: 16px;
+    --checkbox-size-large: 20px;
 
+    /* Button Padding */
+    --button-padding-large: 12px 24px;
+    --button-padding-medium: 8px 16px;
+    --button-padding-small: 4px 8px;
 
-  /* CheckboxButton Sizes */
-  --checkbox-small-size: 12px;
-  --checkbox-medium-size: 16px;
-  --checkbox-large-size: 20px;
+    /* Input Padding */
+    --input-padding-small: 10px 14px;
+    --input-padding-medium: 12px 16px;
+    --input-padding-large: 14px 20px;
 
-  /* Button Padding */
-  --button-padding-large: 12px 24px;
-  --button-padding-medium: 8px 16px;
-  --button-padding-small: 4px 8px;
+    /* Textarea Padding */
+    --textarea-padding-small: 10px 14px;
+    --textarea-padding-medium: 12px 16px;
+    --textarea-padding-large: 14px 20px;
 
-  /* Input Padding */
-  --input-padding-small: 12px 20px 8px 20px;
-  --input-padding-medium: 16px 24px 12px 24px;
-  --input-padding-large: 20px 30px 16px 30px;
+    /* Select Padding */
+    --select-padding-small: 6px 12px;
+    --select-padding-medium: 8px 16px;
+    --select-padding-large: 10px 20px;
 
+    // ThemeSwitcher Size
+    --themeSwitcher-size-small: 12px;
+    --themeSwitcher-size-medium: 16px;
+    --themeSwitcher-size-large: 20px;
 
-  /* InputNumber Padding */
-  --input-number-padding-small: 6px 12px;
-  --input-number-padding-medium: 8px 16px;
-  --input-number-padding-large: 10px 20px;
+    // ThemeSwitcher padding
+    --themeSwitcher-padding-small: 8px;
+    --themeSwitcher-padding-medium: 12px;
+    --themeSwitcher-padding-large: 16px;
 
+    /* Option Padding */
+    --option-padding-small: 4px 10px;
+    --option-padding-medium: 6px 14px;
+    --option-padding-large: 8px 18px;
 
-  /* Textarea Padding */
-  --textarea-padding-small: 12px 20px 8px 20px;
-  --textarea-padding-medium: 16px 24px 12px 24px;
-  --textarea-padding-large: 20px 30px 16px 30px;
+    /* Switch Padding */
+    --switch-padding-small: 6px 12px;
+    --switch-padding-medium: 8px 16px;
+    --switch-padding-large: 10px 20px;
 
-  /* Select Padding */
-  --select-padding-small: 6px 12px;
-  --select-padding-medium: 8px 16px;
-  --select-padding-large: 10px 20px;
+    /* Collapse Padding */
+    --collapse-padding-small: 8px;
+    --collapse-padding-medium: 10px;
+    --collapse-padding-large: 12px;
 
-  /* Option Padding */
-  --option-padding-small: 4px 10px;
-  --option-padding-medium: 6px 14px;
-  --option-padding-large: 8px 18px;
+    /* Tabs Padding */
+    --tabs-padding-small: 10px 12px;
+    --tabs-padding-medium: 12px 16px;
+    --tabs-padding-large: 16px 20px;
 
-  /* Switch Padding */
-  --switch-padding-small: 6px 12px;
-  --switch-padding-medium: 8px 16px;
-  --switch-padding-large: 10px 20px;
+    /* Breadcrumbs Padding */
+    --breadcrumbs-padding-small: 2px 4px;
+    --breadcrumbs-padding-medium: 4px 6px;
+    --breadcrumbs-padding-large: 6px 8px;
 
-  /* Collapse Padding */
-  --collapse-padding-small: 8px;
-  --collapse-padding-medium: 10px;
-  --collapse-padding-large: 12px;
+    /* Menu Padding */
+    --menu-padding-small: 10px;
+    --menu-padding-medium: 12px;
+    --menu-padding-large: 14px;
 
-  /* Tabs Padding */
-  --tabs-padding-small: 10px 12px;
-  --tabs-padding-medium: 12px 16px;
-  --tabs-padding-large: 16px 20px;
+    /* Toast Padding */
+    --toast-padding-small: 8px 12px;
+    --toast-padding-medium: 12px 16px;
+    --toast-padding-large: 16px 20px;
 
-  /* Breadcrumbs Padding */
-  --breadcrumbs-padding-small: 2px 4px;
-  --breadcrumbs-padding-medium: 4px 6px;
-  --breadcrumbs-padding-large: 6px 8px;
+    /* Table Padding */
+    --table-padding-small: 8px 12px;
+    --table-padding-medium: 12px 16px;
+    --table-padding-large: 16px 20px;
 
-  /* Menu Padding */
-  --menu-padding-small: 8px 12px;
-  --menu-padding-medium: 12px 16px;
-  --menu-padding-large: 16px 20px;
+    /* Table-cell Padding */
+    --table-cell-padding-small: 8px 12px;
+    --table-cell-padding-medium: 12px 16px;
+    --table-cell-padding-large: 16px 20px;
 
-  /* Toast Padding */
-  --toast-padding-small: 8px 12px;
-  --toast-padding-medium: 12px 16px;
-  --toast-padding-large: 16px 20px;
+    /* Tooltip Padding */
+    --tooltip-padding-small: 6px;
+    --tooltip-padding-medium: 8px;
+    --tooltip-padding-large: 10px;
 
-  /* Pagination Size */
-  --pagination-size-small: 30px;
-  --pagination-size-medium: 32px;
-  --pagination-size-large: 34px;
+    /* Popover Padding */
+    --popover-padding-small: 12px;
+    --popover-padding-medium: 16px;
+    --popover-padding-large: 20px;
 
-  /* Badge Size */
-  --badge-size-small: 20px;
-  --badge-size-medium: 24px;
-  --badge-size-large: 28px;
+    /* Progress size */
+    --progress-size-small: 80px;
+    --progress-size-medium: 100px;
+    --progress-size-large: 120px;
 
-  /* Empty Sizes */
-  --empty-size-small-width: 144px;
-  --empty-size-small-height: 108px;
-  --empty-size-medium-width: 180px;
-  --empty-size-medium-height: 144px;
-  --empty-size-large-width: 216px;
-  --empty-size-large-height: 180px;
+    /* Stepper Padding */
+    --stepper-size-small: 20px;
+    --stepper-size-medium: 24px;
+    --stepper-size-large: 32px;
 
-  /* Padding Sizes */
-  --padding-1: 1.5rem; /* 24px */
-  --padding-2: 1.25rem; /* 20px */
-  --padding-3: 1rem; /* 16px */
-  --padding-4: 0.75rem; /* 12px */
-  --padding-5: 0.5rem; /* 8px */
-  --padding-6: 0.25rem; /* 4px */
+    /* Pagination Size */
+    --pagination-size-small: 30px;
+    --pagination-size-medium: 32px;
+    --pagination-size-large: 34px;
 
-  /* Border Radius */
-  --border-radius-1: 30px;
-  --border-radius-2: 25px;
-  --border-radius-3: 20px;
-  --border-radius-4: 15px;
-  --border-radius-5: 10px;
-  --border-radius-6: 5px;
+    /* Badge Size */
+    --badge-size-small: 20px;
+    --badge-size-medium: 24px;
+    --badge-size-large: 28px;
 
-  /* Border width */
-  --border-width-1: 6px;
-  --border-width-2: 5px;
-  --border-width-3: 4px;
-  --border-width-4: 3px;
-  --border-width-5: 2px;
-  --border-width-6: 1px;
+    /* Empty Sizes */
+    --empty-size-small-width: 144px;
+    --empty-size-small-height: 108px;
+    --empty-size-medium-width: 180px;
+    --empty-size-medium-height: 144px;
+    --empty-size-large-width: 216px;
+    --empty-size-large-height: 180px;
 
+    /* Padding Sizes */
+    --padding-1: 1.5rem; /* 24px */
+    --padding-2: 1.25rem; /* 20px */
+    --padding-3: 1rem; /* 16px */
+    --padding-4: 0.75rem; /* 12px */
+    --padding-5: 0.5rem; /* 8px */
+    --padding-6: 0.25rem; /* 4px */
 
-  /* Navbar Height */
-  --navbar-height: 70px;
+    // Avatar Sizes
+    --avatar-size-small: 50px;
+    --avatar-size-medium: 100px;
+    --avatar-size-large: 150px;
 
-  /* Sidebar Width */
-  --sidebar-open-width: 250px;
-  --sidebar-close-width: 75px;
+    /* Border Radius */
+    --border-radius-1: 30px;
+    --border-radius-2: 25px;
+    --border-radius-3: 20px;
+    --border-radius-4: 15px;
+    --border-radius-5: 10px;
+    --border-radius-6: 5px;
 
-  /* Media Query Breakpoints */
-  --mobile-width: 320px;
-  --tablet-width: 768px;
-  --desktop-width: 1024px;
-  --large-desktop-width: 1600px;
+    /* Border width */
+    --border-width-1: 6px;
+    --border-width-2: 5px;
+    --border-width-3: 4px;
+    --border-width-4: 3px;
+    --border-width-5: 2px;
+    --border-width-6: 1px;
 
-  --size-1: 100px;
-  --size-2: 80px;
-  --size-3: 60px;
-  --size-4: 40px;
-  --size-5: 20px;
-  --size-6: 10px;
+    /* Navbar Height */
+    --navbar-height: 70px;
 
-  /* Heading Font Styles */
-  --heading-1: var(--heading-size-1) / var(--heading-line-1) var(--fontFamilyFirst);
-  --heading-2: var(--heading-size-2) / var(--heading-line-2) var(--fontFamilyFirst);
-  --heading-3: var(--heading-size-3) / var(--heading-line-3) var(--fontFamilyFirst);
-  --heading-4: var(--heading-size-4) / var(--heading-line-4) var(--fontFamilyFirst);
-  --heading-5: var(--heading-size-5) / var(--heading-line-5) var(--fontFamilyFirst);
-  --heading-6: var(--heading-size-6) / var(--heading-line-6) var(--fontFamilyFirst);
+    /* Sidebar Width */
+    --sidebar-open-width: 250px;
+    --sidebar-close-width: 75px;
 
-  /* Paragraph Font Styles */
-  --paragraph-1: var(--paragraph-size-1) / var(--paragraph-line-1) var(--fontFamilyFirst);
-  --paragraph-2: var(--paragraph-size-2) / var(--paragraph-line-2) var(--fontFamilyFirst);
-  --paragraph-3: var(--paragraph-size-3) / var(--paragraph-line-3) var(--fontFamilyFirst);
-  --paragraph-4: var(--paragraph-size-4) / var(--paragraph-line-4) var(--fontFamilyFirst);
-  --paragraph-5: var(--paragraph-size-5) / var(--paragraph-line-5) var(--fontFamilyFirst);
-  --paragraph-6: var(--paragraph-size-6) / var(--paragraph-line-6) var(--fontFamilyFirst);
+    /* Media Query Breakpoints */
+    --mobile-width: 320px;
+    --tablet-width: 768px;
+    --desktop-width: 1024px;
+    --large-desktop-width: 1600px;
+
+    --size-1: 100px;
+    --size-2: 80px;
+    --size-3: 60px;
+    --size-4: 40px;
+    --size-5: 20px;
+    --size-6: 10px;
+
+    /* Heading Font Styles */
+    --heading-1: var(--heading-size-1) / var(--heading-line-1) var(--fontFamilyFirst);
+    --heading-2: var(--heading-size-2) / var(--heading-line-2) var(--fontFamilyFirst);
+    --heading-3: var(--heading-size-3) / var(--heading-line-3) var(--fontFamilyFirst);
+    --heading-4: var(--heading-size-4) / var(--heading-line-4) var(--fontFamilyFirst);
+    --heading-5: var(--heading-size-5) / var(--heading-line-5) var(--fontFamilyFirst);
+    --heading-6: var(--heading-size-6) / var(--heading-line-6) var(--fontFamilyFirst);
+
+    /* Paragraph Font Styles */
+    --paragraph-1: var(--paragraph-size-1) / var(--paragraph-line-1) var(--fontFamilyFirst);
+    --paragraph-2: var(--paragraph-size-2) / var(--paragraph-line-2) var(--fontFamilyFirst);
+    --paragraph-3: var(--paragraph-size-3) / var(--paragraph-line-3) var(--fontFamilyFirst);
+    --paragraph-4: var(--paragraph-size-4) / var(--paragraph-line-4) var(--fontFamilyFirst);
+    --paragraph-5: var(--paragraph-size-5) / var(--paragraph-line-5) var(--fontFamilyFirst);
+    --paragraph-6: var(--paragraph-size-6) / var(--paragraph-line-6) var(--fontFamilyFirst);
 }

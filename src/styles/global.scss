@@ -1,41 +1,169 @@
-@import "reset/reset";
-@import "variables/variables";
-@import "themes/dark";
-@import "themes/light";
-
-$colors: (
-        primary: var(--primary),
-        secondary: var(--secondary),
-        success: var(--success),
-        warning: var(--warning),
-        danger: var(--danger),
-        info: var(--info),
-        link: var(--link),
-        white: var(--white),
-        black: var(--black),
-        text: var(--text),
-);
+@import 'reset/reset';
+@import 'variables/variables';
+@import 'themes/dark';
+@import 'themes/light'; // Check if light is correct
 
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 body {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 html {
-  background-color: var(--bg);
+    background-color: var(--bg);
 }
 
+#root {
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+$colors: (
+    primary: var(--primary),
+    secondary: var(--secondary),
+    success: var(--success),
+    warning: var(--warning),
+    danger: var(--danger),
+    info: var(--info),
+    link: var(--link),
+    white: var(--white),
+    black: var(--black),
+    text: var(--text),
+);
+$border-colors: (
+    border-primary: var(--primary),
+    border-secondary: var(--secondary),
+    border-success: var(--success),
+    border-warning: var(--warning),
+    border-danger: var(--danger),
+    border-info: var(--info),
+    border-link: var(--link),
+    border-white: var(--white),
+    border-black: var(--black),
+    border-text: var(--text),
+);
+
+$paragraph: (
+    h1: var(--paragraph-1),
+    h2: var(--paragraph-2),
+    h3: var(--paragraph-3),
+    h4: var(--paragraph-4),
+    h5: var(--paragraph-5),
+    h6: var(--paragraph-6),
+);
+$heading: (
+    h1: var(--heading-1),
+    h2: var(--heading-2),
+    h3: var(--heading-3),
+    h4: var(--heading-4),
+    h5: var(--heading-5),
+    h6: var(--heading-6),
+);
+
+$button-padding: (
+    small: var(--button-padding-small),
+    medium: var(--button-padding-medium),
+    large: var(--button-padding-large),
+);
+
+$radio-size: (
+    small: var(--radio-size-small),
+    medium: var(--radio-size-medium),
+    large: var(--radio-size-large),
+);
+
+$badge-size: (
+    small: var(--badge-size-small),
+    medium: var(--badge-size-medium),
+    large: var(--badge-size-large),
+);
+$checkbox-size: (
+    small: var(--checkbox-size-small),
+    medium: var(--checkbox-size-medium),
+    large: var(--checkbox-size-large),
+);
+$input-padding: (
+    small: var(--input-padding-small),
+    medium: var(--input-padding-medium),
+    large: var(--input-padding-large),
+);
+
+$textarea-padding: (
+    small: var(--textarea-padding-small),
+    medium: var(--textarea-padding-medium),
+    large: var(--textarea-padding-large),
+);
+
+$avatar-size: (
+    small: var(--avatar-size-small),
+    medium: var(--avatar-size-medium),
+    large: var(--avatar-size-large),
+);
+
+$themeSwither-size: (
+    small: var(--themeSwitcher-size-small),
+    medium: var(--themeSwitcher-size-medium),
+    large: var(--themeSwitcher-size-large),
+);
+$themeSwither-padding: (
+    small: var(--themeSwitcher-padding-small),
+    medium: var(--themeSwitcher-padding-medium),
+    large: var(--themeSwitcher-padding-large),
+);
+
+$tooltip-padding: (
+    small: var(--tooltip-padding-small),
+    medium: var(--tooltip-padding-medium),
+    large: var(--tooltip-padding-large),
+);
+$pagitation-size: (
+    small: var(--pagination-size-small),
+    medium: var(--pagination-size-medium),
+    large: var(--pagination-size-large),
+);
+
+$progress-size: (
+    small: var(--progress-size-small),
+    medium: var(--progress-size-medium),
+    large: var(--progress-size-large),
+);
+
+$tabs-padding: (
+    small: var(--tabs-padding-small),
+    medium: var(--tabs-padding-medium),
+    large: var(--tabs-padding-large),
+);
+
+$stepper-size: (
+    small: var(--stepper-size-small),
+    medium: var(--stepper-size-medium),
+    large: var(--stepper-size-large),
+);
+
+$select-padding: (
+    small: var(--select-padding-small),
+    medium: var(--select-padding-medium),
+    large: var(--select-padding-large),
+);
+
+$weight: (
+    fontThin: var(--fontThin),
+    fontExtraLight: var(--fontExtraLight),
+    fontRegular: var(--fontRegular),
+    fontMedium: var(--fontMedium),
+    fontSemiBold: var(--fontSemiBold),
+    fontBold: var(--fontBold),
+    fontExtraBold: var(--fontExtraBold),
+    fontBlack: var(--fontBlack),
+);
+$fontFamily: (
+    first: var(--fontFamilyFirst),
+    second: var(--fontFamilySecond),
+    third: var(--fontFamilyThird),
+);
+
 .app {
-  min-width: 100vw;
-  min-height: 100vh;
-  background-color: var(--bg);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  height: 100%;
+    background-color: var(--bg);
 }

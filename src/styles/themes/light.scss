@@ -1,29 +1,18 @@
 .app.light {
-  /* Темная тема */
-  --primary: #1677ff;
+    --primary: #1677ff;
+    --secondary: #722ed1;
+    --success: #52c41a;
+    --warning: #faad14;
+    --danger: #f5222d;
+    --info: #0958d9;
+    --link: #4096ff;
+    --white: #ffffff;
+    --black: #000000;
+    --text: #000000;
+    --text-invert: #ffffff;
+    --gray: #aaaaaa;
+    --bg: #ffffff;
+    --bg-dark: #f5f5f5;
 
-  --secondary: #722ed1;
-
-  --success: #52c41a;
-
-  --warning: #faad14;
-
-  --danger: #f5222d;
-
-  --info: #0958d9;
-
-  --link: #4096ff;
-
-  --white: #ffffff;
-  --black: #000000;
-
-  --text: #000000;
-  --text-invert: #ffffff;
-
-
-  --gray: #aaaaaa;
-
-
-  --bg: #ffffff;
-  --bg-dark: #f5f5f5;
+    --radio-bg: #ffffff;
 }

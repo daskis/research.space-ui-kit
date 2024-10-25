@@ -1,64 +1,64 @@
+@import '@styles/global';
 .wrapper {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-
-  &.hide {
-    display: none;
-  }
-
-  & .body {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    overflow: visible;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-    z-index: 100;
-    padding: 20px;
-    min-width: 400px;
-    min-height: 300px;
-    max-width: 90vw;
-    max-height: 90vh;
-    overflow-y: hidden;
-    background-color: var(--bg);
+    align-items: center;
+    justify-content: center;
 
-    & .content {
-      overflow-y: auto;
+    &.hide {
+        display: none;
     }
 
-    & .close {
-      position: absolute;
-      cursor: pointer;
-      top: 20px;
-      right: 20px;
+    & .body {
+        display: flex;
+        overflow: visible;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        z-index: 100;
+        padding: 20px;
+        min-width: 400px;
+        min-height: 300px;
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow-y: hidden;
+        background-color: var(--bg);
 
-      & svg {
-        transition: 0.3s all ease;
-        fill: var(--gray);
-        opacity: 0.5;
-        width: 32px;
-        height: 32px;
-      }
-      &:hover {
-        & svg {
-          opacity: 1;
+        & .content {
+            overflow-y: auto;
         }
-      }
-    }
 
-    & .heading {
-      display: flex;
-      align-items: center;
+        & .close {
+            position: absolute;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+
+            & svg {
+                transition: 0.3s all ease;
+                fill: var(--gray);
+                opacity: 0.5;
+                width: 32px;
+                height: 32px;
+            }
+            &:hover {
+                & svg {
+                    opacity: 1;
+                }
+            }
+        }
+
+        & .heading {
+            display: flex;
+            align-items: center;
+        }
     }
-  }
 }

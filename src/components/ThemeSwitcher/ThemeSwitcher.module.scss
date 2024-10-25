@@ -1,52 +1,38 @@
+@import '@styles/global';
+
 .button {
-  cursor: pointer;
-  background-color: var(--bg-dark);
-  transition: 0.3s all ease;
-  border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--bg-dark);
+    transition: 0.3s all ease;
+    border-radius: 10px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  & svg {
-    width: 15px;
-    height: 15px;
-    fill: var(--text);
-  }
-
-  &:hover {
-    filter: brightness(80%);
-  }
-
-  &:active {
-    filter: brightness(60%);
-  }
-
-  // Размеры
-  &.small {
-    padding: 8px;
-
-    svg {
-      width: 12px;
-      height: 12px;
+    & svg {
+        fill: var(--text);
     }
-  }
 
-  &.medium {
-    padding: 12px;
-
-    svg {
-      width: 15px;
-      height: 15px;
+    &:hover {
+        filter: brightness(80%);
     }
-  }
 
-  &.large {
-    padding: 16px;
-
-    svg {
-      width: 18px;
-      height: 18px;
+    &:active {
+        filter: brightness(60%);
     }
-  }
+
+    @each $key, $value in $themeSwither-size {
+        &.#{$key} {
+            & svg {
+                width: $value;
+                height: $value;
+            }
+        }
+    }
+    @each $key, $value in $themeSwither-padding {
+        &.#{$key} {
+            padding: $value;
+        }
+    }
 }

@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Colors, Sizes } from '@helpers';
 
 export interface ISwitchProps {
-    size?: 'small' | 'medium' | 'large';
-    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'white' | 'black' | 'text';
+    size?: Sizes;
+    color?: Colors;
     checked: boolean;
-    onChange: Dispatch<SetStateAction<boolean>>;
+    onChange: (checked: boolean) => void;
 }

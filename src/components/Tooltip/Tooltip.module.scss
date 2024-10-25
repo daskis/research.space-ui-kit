@@ -1,0 +1,31 @@
+@import '@styles/global';
+.tooltipContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    border: 1px solid var(--gray);
+    background-color: var(--bg-dark);
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    @each $key, $value in $tooltip-padding {
+        &.#{$key} {
+            padding: $value;
+        }
+    }
+}
+
+.tooltipContainer:hover .tooltip,
+.tooltipContainer:focus .tooltip {
+    opacity: 1;
+}

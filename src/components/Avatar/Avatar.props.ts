@@ -1,7 +1,8 @@
+import { Sizes } from '@helpers';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IAvatarProps {
-    size?: 'small' | 'medium' | 'large';
+    size?: Sizes;
     src?: string;
     edit?: boolean;
     onChange?: Dispatch<SetStateAction<File | undefined>>;

@@ -1,4 +1,7 @@
 import { createContext } from 'react';
-import { ThemeContentProps } from './types';
+import { Theme, ThemeContentProps } from './types';
 
-export const ThemeContent = createContext<ThemeContentProps>({});
+export const ThemeContent = createContext<ThemeContentProps>({
+    theme: Theme.LIGHT,
+    setTheme: undefined,
+});

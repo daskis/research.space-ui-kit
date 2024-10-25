@@ -1,294 +1,112 @@
+@import '@styles/global';
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background: inherit;
-  position: relative;
-
-  & .placeholder {
-    min-width: 300px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    background: inherit;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--gray);
-    cursor: pointer;
-
-    &.primary {
-
-      &.active {
-        border-color: var(--primary);
-      }
-
-      &:hover {
-        border-color: var(--primary);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--primary) 75%, transparent);
-      }
-    }
-
-    &.secondary {
-      &.active {
-        border-color: var(--secondary);
-      }
-
-      &:hover {
-        border-color: var(--secondary);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--secondary) 75%, transparent);
-      }
-    }
-
-    &.success {
-
-      &.active {
-        border-color: var(--success);
-      }
-
-      &:hover {
-        border-color: var(--success);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--success) 75%, transparent);
-      }
-    }
-
-    &.warning {
-
-      &.active {
-        border-color: var(--warning);
-      }
-
-      &:hover {
-        border-color: var(--warning);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--warning) 75%, transparent);
-      }
-    }
-
-    &.danger {
-
-      &.active {
-        border-color: var(--danger);
-      }
-
-      &:hover {
-        border-color: var(--danger);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--danger) 75%, transparent);
-      }
-    }
-
-    &.info {
-
-      &.active {
-        border-color: var(--info);
-      }
-
-      &:hover {
-        border-color: var(--info);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--info) 75%, transparent);
-      }
-    }
-
-    &.link {
-
-      &.active {
-        border-color: var(--link);
-      }
-
-      &:hover {
-        border-color: var(--link);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--link) 75%, transparent);
-      }
-    }
-
-    &.white {
-
-      &.active {
-        border-color: var(--white);
-      }
-
-      &:hover {
-        border-color: var(--white);
-
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--white) 75%, transparent);
-      }
-    }
-
-    &.black {
-
-      &.active {
-        border-color: var(--black);
-      }
-
-      &:hover {
-        border-color: var(--black);
-      }
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--black) 75%, transparent);
-      }
-    }
-
-
-    & .arrow {
-      &.active {
-        & svg {
-          transform: rotate(180deg);
-        }
-      }
-
-      & svg {
-        transition: 0.1s all ease;
-        width: 20px;
-        opacity: 0.3;
-        fill: var(--text);
-        height: 20px;
-      }
-    }
-
-    &.small {
-      padding: var(--select-padding-small);
-    }
-
-    &.medium {
-      padding: var(--select-padding-medium);
-    }
-
-    &.large {
-      padding: var(--select-padding-large);
-    }
-  }
-
-  & .select {
-    background-color: var(--bg);
-    position: absolute;
-    z-index: 10;
-    left: 0;
-    right: 0;
-    min-width: 100%;
-    max-height: 300px;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-    border: 1px solid var(--gray);
-    padding: 2px;
-    display: flex; /* Элемент остаётся в разметке */
     flex-direction: column;
-    gap: 3px;
-    transform: translateY(-10px); /* Начинаем чуть выше */
-    opacity: 0; /* Начинаем с прозрачности */
-    visibility: hidden; /* Делаем элемент невидимым */
-    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s 0.2s; /* Переходы и задержка для visibility */
+    gap: 5px;
+    background: inherit;
+    position: relative;
 
-    &.visible {
-      transform: translateY(0); /* Плавно опускаем на место */
-      opacity: 1; /* Плавно показываем */
-      visibility: visible; /* Видимость */
-      transition: transform 0.2s ease, opacity 0.2s ease; /* Убираем задержку */
+    & .placeholder {
+        min-width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        background: inherit;
+        border-style: solid;
+        border-width: 1px;
+        border-color: var(--gray);
+        cursor: pointer;
+
+        @each $key, $value in $colors {
+            &.#{$key} {
+                &.active {
+                    border-color: $value;
+                }
+
+                &:hover {
+                    border-color: $value;
+                }
+
+                &:focus {
+                    outline: 1px solid color-mix(in srgb, $value 75%, transparent);
+                }
+            }
+        }
+
+        & .arrow {
+            &.active {
+                & svg {
+                    transform: rotate(180deg);
+                }
+            }
+
+            & svg {
+                transition: 0.1s all ease;
+                width: 20px;
+                opacity: 0.3;
+                fill: var(--text);
+                height: 20px;
+            }
+        }
+
+        @each $key, $value in $select-padding {
+            &.#{$key} {
+                padding: $value;
+            }
+        }
     }
 
-    &.small {
-      top: 40px;
+    & .select {
+        background-color: var(--bg);
+        position: absolute;
+        z-index: 10;
+        left: 0;
+        right: 0;
+        min-width: 100%;
+        max-height: 300px;
+        scroll-behavior: smooth;
+        overflow-y: scroll;
+        border: 1px solid var(--gray);
+        padding: 2px;
+        display: flex; /* Элемент остаётся в разметке */
+        flex-direction: column;
+        gap: 3px;
+        transform: translateY(-10px); /* Начинаем чуть выше */
+        opacity: 0; /* Начинаем с прозрачности */
+        visibility: hidden; /* Делаем элемент невидимым */
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease,
+            visibility 0s 0.2s; /* Переходы и задержка для visibility */
+
+        &.visible {
+            transform: translateY(0); /* Плавно опускаем на место */
+            opacity: 1; /* Плавно показываем */
+            visibility: visible; /* Видимость */
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease; /* Убираем задержку */
+        }
+
+        &.small {
+            top: 40px;
+        }
+
+        &.medium {
+            top: 48px;
+        }
+
+        &.large {
+            top: 56px;
+        }
+
+        @each $key, $value in $colors {
+            &.#{$key} {
+                &:focus {
+                    outline: 1px solid color-mix(in srgb, $value 75%, transparent);
+                }
+            }
+        }
     }
-
-    &.medium {
-      top: 48px;
-    }
-
-    &.large {
-      top: 56px;
-    }
-
-    &.primary {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--primary) 75%, transparent);
-
-      }
-    }
-
-    &.secondary {
-
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--secondary) 75%, transparent);
-
-      }
-    }
-
-    &.success {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--success) 75%, transparent);
-
-      }
-    }
-
-    &.warning {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--warning) 75%, transparent);
-
-      }
-    }
-
-    &.danger {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--danger) 75%, transparent);
-
-      }
-    }
-
-    &.info {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--info) 75%, transparent);
-
-      }
-    }
-
-    &.link {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--link) 75%, transparent);
-
-      }
-    }
-
-    &.white {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--white) 75%, transparent);
-
-      }
-    }
-
-    &.black {
-      &:focus {
-        outline: 1px solid color-mix(in srgb, var(--black) 75%, transparent);
-      }
-    }
-  }
 }

@@ -1,13 +1,32 @@
-import { RadioButton, IRadioButtonProps } from './RadioButton';
-import { RadioGroup, IRadioGroupProps } from './RadioGroup';
+import { IRadioProps } from './Radio.props';
+import cls from './Radio.module.scss';
+import { classNames } from '@helpers';
 
-export const Radio = {
-    Button: (props: IRadioButtonProps) => <RadioButton {...props} />,
-    Group: ({ children, ...props }: IRadioGroupProps) => (
-        <RadioGroup
+export const Radio: React.FC<IRadioProps> = ({
+    color = 'primary',
+    size = 'medium',
+    label,
+    value,
+    onChange,
+    className,
+    isSelected,
+    ...props
+}) => {
+    return (
+        <label
             {...props}
+            className={classNames(
+                cls.radio,
+                {
+                    [cls[size]]: size,
+                    [cls[color]]: color,
+                    [cls.checked]: isSelected,
+                },
+                [className],
+            )}
         >
-            {children}
-        </RadioGroup>
-    ),
+            <input type="radio" className={cls.input} checked={isSelected} onChange={() => onChange(value)} />
+            <span className={cls.label}>{label}</span>
+        </label>
+    );
 };
