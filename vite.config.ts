@@ -6,11 +6,12 @@ import { glob } from 'glob';
 import react from '@vitejs/plugin-react';
 import * as path from 'node:path';
 
+const pathsToInclude = ['src/components/**/*.{ts,tsx}', 'src/hooks/**/*.{ts,tsx}', 'src/helpers/**/*.{ts,tsx}', 'src/providers/**/*.{ts,tsx}', 'src/styles/**/*.{css,scss}'];
 const entries = Object.fromEntries(
-    glob
-        .sync('src/components/**/*.{ts,tsx}')
+    pathsToInclude
+        .flatMap(pattern => glob.sync(pattern))
         .map(file => [
-            relative('src/components', file.slice(0, file.length - extname(file).length)),
+            relative('src', file.slice(0, file.length - extname(file).length)),
             fileURLToPath(new URL(file, import.meta.url)),
         ]),
 );
@@ -50,7 +51,7 @@ export default defineConfig({
         emptyOutDir: true,
         outDir: './dist',
         lib: {
-            name: 'ui-kit',
+            name: 'uikit',
             entry: resolve(__dirname, 'src/index.ts'),
         },
         ssr: true,
