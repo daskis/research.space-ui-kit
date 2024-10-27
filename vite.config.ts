@@ -50,8 +50,8 @@ export default defineConfig({
         emptyOutDir: true,
         outDir: './dist',
         lib: {
-            name: 'uikit',
-            entry: resolve(__dirname, 'src/components/index.ts'),
+            name: 'ui-kit',
+            entry: resolve(__dirname, 'src/index.ts'),
         },
         ssr: true,
         copyPublicDir: false,
