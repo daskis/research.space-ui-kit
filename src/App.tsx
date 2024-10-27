@@ -1,7 +1,5 @@
-import cls from './App.module.scss';
-
 const App = () => {
-    return <div className={cls.list}></div>;
+    return <></>;
 };
 
 export default App;

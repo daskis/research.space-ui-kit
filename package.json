@@ -9,13 +9,11 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "bump": "npm version patch -m \"React UI Kit version updated to v%s\"",
     "bump:minor": "npm version minor -m \"React UI Kit version updated to v%s\"",
-    "bump:major": "npm version major -m \"React UI Kit version updated to v%s\"",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "bump:major": "npm version major -m \"React UI Kit version updated to v%s\""
   },
   "peerDependencies": {
     "react": ">=18.3.1",
@@ -24,35 +22,18 @@
     "react-router-dom": "^6.26.2"
   },
   "dependencies": {
-    "-": "^0.0.1",
     "@react-input/mask": "^1.2.10",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^10.0.0",
-    "D": "^1.0.0",
     "clsx": "^2.1.1",
     "glob": "^10.4.2",
     "react": ">=18.3.1",
     "react-dom": ">=18.3.1",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2",
-    "rollup": "^4.18.0",
-    "storybook-dark-mode": "^4.0.2",
-    "uuid": "^10.0.0",
     "vite-plugin-dts": "^3.9.1"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.9.0",
-    "@storybook/addon-docs": "^8.3.5",
-    "@storybook/addon-essentials": "^8.3.5",
-    "@storybook/addon-interactions": "^8.3.5",
-    "@storybook/addon-links": "^8.3.5",
-    "@storybook/addon-onboarding": "^8.3.5",
-    "@storybook/blocks": "^8.3.5",
-    "@storybook/manager-api": "^8.3.5",
-    "@storybook/react": "^8.3.5",
-    "@storybook/react-vite": "^8.3.5",
-    "@storybook/test": "^8.3.5",
-    "@storybook/theming": "^8.3.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -66,7 +47,6 @@
     "eslint-plugin-storybook": "^0.9.0",
     "prettier": "3.2.5",
     "sass": "^1.77.6",
-    "storybook": "^8.3.5",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   },
@@ -76,11 +56,11 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "./dist/style.css": "./dist/style.css",
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "sideEffects": [
     "**/*.css"

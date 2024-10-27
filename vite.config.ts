@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
-import * as path from 'node:path';
 
 const outputBase = {
     globals: {
@@ -25,11 +24,11 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@styles': path.resolve(__dirname, 'src/styles'),
-            '@components': path.resolve(__dirname, 'src/components'),
-            '@hooks': path.resolve(__dirname, 'src/hooks'),
-            '@helpers': path.resolve(__dirname, 'src/helpers'),
-            '@providers': path.resolve(__dirname, 'src/providers'),
+            '@styles': resolve(__dirname, 'src/styles'),
+            '@components': resolve(__dirname, 'src/components'),
+            '@hooks': resolve(__dirname, 'src/hooks'),
+            '@helpers': resolve(__dirname, 'src/helpers'),
+            '@providers': resolve(__dirname, 'src/providers'),
         },
     },
     define: {
@@ -41,15 +40,15 @@ export default defineConfig({
         lib: {
             name: 'uikit',
             entry: resolve(__dirname, 'src/index.ts'), // Укажите путь к вашему файлу входа
+            formats: ['es', 'cjs'], // Поддерживаемые форматы
+            fileName: (format) => `index.${format}.js`, // Имена выходных файлов
         },
-        ssr: false, // Установите в false, если не используете SSR
-        copyPublicDir: false,
+        ssr: false,
         rollupOptions: {
             external: ['react', 'react-dom', 'styled-components', 'classnames'],
-            input: resolve(__dirname, 'src/index.ts'), // Убедитесь, что у вас есть этот файл
             output: {
-                dir: resolve(__dirname, 'dist'), // Папка для выходных файлов
-                entryFileNames: '[name].[format].js', // Имена выходных файлов
+                globals: outputBase.globals,
+                entryFileNames: '[name].[format].js',
                 format: 'es',
                 exports: 'named',
             },
