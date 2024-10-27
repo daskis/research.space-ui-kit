@@ -8,8 +8,8 @@ import { Paragraph } from '@components';
 export const OptionEl = ({
     option,
     fontFamily = 'first',
-    size,
-    color,
+    size = 'medium',
+    color = 'primary',
     active = false,
     borderRadius,
     onClick,

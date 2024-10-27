@@ -63,7 +63,7 @@ const Template: StoryFn<IRadioProps> = (args) => {
     );
 };
 
-export const DefaultRadio = Template.bind({});
+export const DefaultRadio: Story = Template.bind({});
 DefaultRadio.args = {
     color: 'primary',
     size: 'medium',

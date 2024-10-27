@@ -4,6 +4,7 @@ import { IToastProps, Toast } from './Toast.props.ts';
 import { setToastFunction } from './toast.ts';
 import { TextSizes, classNames } from '../../helpers';
 import { Paragraph } from '@components';
+import { createPortal } from 'react-dom';
 
 export const ToastProvider = ({
     size = 'medium',
@@ -47,34 +48,37 @@ export const ToastProvider = ({
     return (
         <>
             {children}
-            <div
-                className={classNames(
-                    cls.wrapper,
-                    {
-                        [cls[position]]: position,
-                    },
-                    [className],
-                )}
-            >
-                {toasts.map((toast) => (
-                    <div
-                        style={style}
-                        key={toast.id}
-                        className={classNames(
-                            cls.toast,
-                            {
-                                [cls[size]]: size,
-                                [cls[toast.type]]: toast.type,
-                            },
-                            [],
-                        )}
-                    >
-                        <Paragraph color={toast.type} size={textSize}>
-                            {toast.message}
-                        </Paragraph>
-                    </div>
-                ))}
-            </div>
+            {createPortal(
+                <div
+                    className={classNames(
+                        cls.wrapper,
+                        {
+                            [cls[position]]: position,
+                        },
+                        [className],
+                    )}
+                >
+                    {toasts.map((toast) => (
+                        <div
+                            style={style}
+                            key={toast.id}
+                            className={classNames(
+                                cls.toast,
+                                {
+                                    [cls[size]]: size,
+                                    [cls[toast.type]]: toast.type,
+                                },
+                                [],
+                            )}
+                        >
+                            <Paragraph color={toast.type} size={textSize}>
+                                {toast.message}
+                            </Paragraph>
+                        </div>
+                    ))}
+                </div>,
+                document.querySelector('body') as HTMLElement,
+            )}
         </>
     );
 };

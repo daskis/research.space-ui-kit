@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { ColorsArray, SizesArray, FontFamilyArray } from '@helpers';
 import { Option } from '../Option';

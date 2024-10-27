@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import { Collapse } from './Collapse';
 import { ICollapseProps } from './Collapse.props';
 import { SizesArray } from '@helpers';
