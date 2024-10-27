@@ -1,20 +1,8 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { extname, relative, resolve } from 'path';
-import { fileURLToPath } from 'node:url';
-import { glob } from 'glob';
+import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 import * as path from 'node:path';
-
-const pathsToInclude = ['src/components/**/*.{ts,tsx}', 'src/hooks/**/*.{ts,tsx}', 'src/helpers/**/*.{ts,tsx}', 'src/providers/**/*.{ts,tsx}', 'src/styles/**/*.{css,scss}'];
-const entries = Object.fromEntries(
-    pathsToInclude
-        .flatMap(pattern => glob.sync(pattern))
-        .map(file => [
-            relative('src', file.slice(0, file.length - extname(file).length)),
-            fileURLToPath(new URL(file, import.meta.url)),
-        ]),
-);
 
 const outputBase = {
     globals: {
@@ -27,7 +15,7 @@ const outputBase = {
     },
 };
 
-// https://vitejs.dev/config/
+// Основная конфигурация Vite
 export default defineConfig({
     plugins: [
         react(),
@@ -52,29 +40,19 @@ export default defineConfig({
         outDir: './dist',
         lib: {
             name: 'uikit',
-            entry: resolve(__dirname, 'src/index.ts'),
+            entry: resolve(__dirname, 'src/index.ts'), // Укажите путь к вашему файлу входа
         },
-        ssr: true,
+        ssr: false, // Установите в false, если не используете SSR
         copyPublicDir: false,
-        // https://vitejs.dev/config/build-options.html#build-rollupoptions
         rollupOptions: {
             external: ['react', 'react-dom', 'styled-components', 'classnames'],
-            input: entries,
-            output: [
-                {
-                    ...outputBase,
-                    exports: 'named',
-                    format: 'cjs',
-                    esModule: true,
-                },
-                {
-                    ...outputBase,
-                    exports: 'named',
-                    format: 'esm',
-                    interop: 'esModule',
-                },
-            ],
-            plugins: [],
+            input: resolve(__dirname, 'src/index.ts'), // Убедитесь, что у вас есть этот файл
+            output: {
+                dir: resolve(__dirname, 'dist'), // Папка для выходных файлов
+                entryFileNames: '[name].[format].js', // Имена выходных файлов
+                format: 'es',
+                exports: 'named',
+            },
         },
     },
 });
